@@ -1,0 +1,39 @@
+﻿/* Estilo del Wrapper */
+#wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+#sidebar-wrapper {
+    min-width: 250px;
+    max-width: 250px;
+    height: 100vh; /* Altura completa */
+    position: fixed;
+    transition: margin 0.5s;
+}
+
+#page-content-wrapper {
+    margin-left: 250px; /* Espacio de la sidebar */
+    width: 100%;
+    transition: margin 0.5s;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    margin-left: -250px; /* Esconde la sidebar */
+    transition: margin 0.5s;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    margin-left: 0; /* Expande el contenido principal */
+    transition: margin 0.5s;
+}
+
+.sidebar-heading {
+    padding: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.list-group-item {
+    border: none;
+}

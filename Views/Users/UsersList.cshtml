@@ -1,0 +1,48 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Dashboard";
+}
+@model List<FormsProyect.Models.Entities.Users>;
+
+<div class="row">
+    <div class="col-sm-8 offset-sm-2">
+        <h2>Users</h2>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Full Name</th>
+                    <th>E-mail</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model){
+                    <tr>
+                        <td>@item.UserId</td>
+                        <td>@item._Name</td>
+                        <td>@item.Email</td>
+                        <td>
+                            <a> 
+                                Block
+                            </a>
+                            <a> 
+                                Unblock
+                            </a>
+                            <a> 
+                                Delete User
+                            </a>
+                            <a> 
+                                Add to Admins
+                            </a>
+                            <a>
+                                Remove from Admins
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

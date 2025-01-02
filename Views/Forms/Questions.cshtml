@@ -1,0 +1,153 @@
+﻿@using FormsProyect.ViewModels
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Dashboard";
+}
+@model FormViewModel
+@* <form asp-action="Questions" method="post">
+    <div id="Slquestion-list"></div>
+    <div id="Mlquestion-list"></div>
+    <div id="Piquestion-list"></div>
+    <div id="Chquestion-list"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const numberOfSlSelect = document.getElementById("numberOfSingleLine");
+            const numberOfMlSelect = document.getElementById("numberOfMultipleLines");
+            const numberOfPiSelect = document.getElementById("numberOfPositiveIntegers");
+            const numberOfChSelect = document.getElementById("numberOfCheckbox");
+
+            const SlquestionList = document.getElementById("Slquestion-list");
+            const MlquestionList = document.getElementById("Mlquestion-list");
+            const PiquestionList = document.getElementById("Piquestion-list");
+            const ChquestionList = document.getElementById("Chquestion-list");
+
+               // Generar preguntas para un contenedor específico
+            function generateQuestions(container, count) {
+                container.innerHTML = ""; // Limpia el contenedor
+                for (let i = 0; i < count; i++) {
+                    const questionDiv = document.createElement("div");
+                    questionDiv.classList.add("question-item");
+                    questionDiv.setAttribute("draggable", "true"); // Hacer que el elemento sea draggable
+                    questionDiv.textContent = `Pregunta ${i + 1}`;
+                    questionDiv.dataset.index = i; // Asignar un índice como referencia
+
+                    // Eventos de drag and drop
+                    questionDiv.addEventListener("dragstart", handleDragStart);
+                    questionDiv.addEventListener("dragover", handleDragOver);
+                    questionDiv.addEventListener("drop", handleDrop);
+                    questionDiv.addEventListener("dragend", handleDragEnd);
+
+                    container.appendChild(questionDiv);
+                }
+            }
+
+            // Actualizar números después de reorganizar
+            function updateQuestionNumbers(container) {
+                const items = container.querySelectorAll(".question-item");
+                items.forEach((item, index) => {
+                    item.textContent = `Pregunta ${index + 1}`;
+                    item.dataset.index = index; // Actualizar índice también
+                });
+            }
+
+            // Manejo de eventos Drag and Drop
+            let draggedElement = null;
+
+            function handleDragStart(event) {
+                draggedElement = event.target;
+                event.target.style.opacity = "0.5";
+                event.dataTransfer.effectAllowed = "move";
+            }
+
+            function handleDragOver(event) {
+                event.preventDefault();
+                event.dataTransfer.dropEffect = "move";
+                event.target.classList.add("drag-over");
+            }
+
+            function handleDrop(event) {
+                event.preventDefault();
+                event.target.classList.remove("drag-over");
+
+                // Reorganizar preguntas
+                if (event.target !== draggedElement && event.target.classList.contains("question-item")) {
+                    const container = draggedElement.parentNode;
+                    const draggedIndex = Array.from(container.children).indexOf(draggedElement);
+                    const targetIndex = Array.from(container.children).indexOf(event.target);
+
+                    if (draggedIndex < targetIndex) {
+                        container.insertBefore(draggedElement, event.target.nextSibling);
+                    } else {
+                        container.insertBefore(draggedElement, event.target);
+                    }
+
+                    // Actualizar números después del cambio
+                    updateQuestionNumbers(container);
+                }
+            }
+
+            function handleDragEnd(event) {
+                event.target.style.opacity = "1";
+            }
+
+            // Eventos para cada select
+            numberOfSlSelect.addEventListener("change", (event) => {
+                const selectedValue = parseInt(event.target.value, 10);
+                generateQuestions(SlquestionList, selectedValue);
+            });
+
+            numberOfMlSelect.addEventListener("change", (event) => {
+                const selectedValue = parseInt(event.target.value, 10);
+                generateQuestions(MlquestionList, selectedValue);
+            });
+
+            numberOfPiSelect.addEventListener("change", (event) => {
+                const selectedValue = parseInt(event.target.value, 10);
+                generateQuestions(PiquestionList, selectedValue);
+            });
+
+            numberOfChSelect.addEventListener("change", (event) => {
+                const selectedValue = parseInt(event.target.value, 10);
+                generateQuestions(ChquestionList, selectedValue);
+            });
+
+            // Inicializar preguntas para cada select si ya hay valores seleccionados
+            generateQuestions(SlquestionList, parseInt(numberOfSlSelect.value, 10));
+            generateQuestions(MlquestionList, parseInt(numberOfMlSelect.value, 10));
+            generateQuestions(PiquestionList, parseInt(numberOfPiSelect.value, 10));
+            generateQuestions(ChquestionList, parseInt(numberOfChSelect.value, 10));
+        });
+    </script>
+    <script src="dragndrop.js"></script>
+
+
+
+    <script>
+        const questionsData = {
+            singleLine: @Model.numberOfSingleLineQuestions,
+            multipleLines: @Model.numberOfMultipleLinesQuestions,
+            positiveIntegers: @Model.numberOfPositiveIntegersQuestions,
+            checkboxes: @Model.numberOfCheckboxQuestions
+        };
+
+        console.log(questionsData);
+
+        // Generar preguntas dinámicamente
+        generateQuestions('Slquestion-list', questionsData.singleLine);
+        generateQuestions('Mlquestion-list', questionsData.multipleLines);
+        generateQuestions('Piquestion-list', questionsData.positiveIntegers);
+        generateQuestions('Chquestion-list', questionsData.checkboxes);
+
+        function generateQuestions(containerId, count) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            for (let i = 0; i < count; i++) {
+                const div = document.createElement('div');
+                div.className = 'question-item';
+                div.textContent = `Pregunta ${i + 1}`;
+                container.appendChild(div);
+            }
+        }
+    </script>
+</form> *@

@@ -1,0 +1,100 @@
+﻿@using FormsProyect.ViewModels
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Dashboard";
+}
+@model FormViewModel
+<link rel="stylesheet" href="~/css/tagify.css">
+<script src="~/js/tagify.js"></script>
+<h2>Crear Formulario</h2>
+
+<form asp-action="Forms" method="post">
+    <div class="form-group">
+        <label for="Title">Título del Formulario</label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="Description">Descripción</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+
+    <hr />
+
+    <div class="form-group mb-4">
+        <label for="topicForm">Topic:</label>
+        <select asp-for="SelectedTopicId" asp-items="@(new SelectList(Model.Topics, "TopicID", "_TopicName"))" class="form-control" required>
+            <option value="">-- Select a Topic --</option>
+        </select>
+    </div>
+
+    <hr />
+
+    <div class="mb-4">
+        <label for="numberOfSingleLine">Number of Single-Line questions:</label>
+        <select id="numberOfSingleLine" name="numberOfSingleLineQuestions" required>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+    </div>
+
+    <div class="mb-4">
+        <label for="numberOfMultipleLines">Number of Multiple-Lines questions:</label>
+        <select id="numberOfMultipleLines" name="numberOfMultipleLinesQuestions" required>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+    </div>
+
+    <div class ="mb-4">
+        <label for="numberOfPositiveIntegers">Number of Positive Integer questions:</label>
+        <select id="numberOfPositiveIntegers" name="numberOfPositiveIntegersQuestions" required>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+    </div>
+
+    <div class="mb-4">
+        <label for="numberOfCheckbox">Number of Checkbox questions:</label>
+        <select id="numberOfCheckbox" name="numberOfCheckboxQuestions" required>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+    </div>
+
+    <hr />
+
+    <div class="form-group mb-4">
+        <label for="Tags">Tags</label>
+        <input id="Tags" asp-for="Tags" class="form-control" placeholder="Add tags..." />
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var input = document.querySelector('#Tags');
+
+            new Tagify(input, {
+                delimiters: " ",
+                whitelist: ["Tag1", "Tag2", "Tag3"],
+                maxTags: 10,
+                dropdown: {
+                    enabled: 0,
+                    maxItems: 10,
+                }
+            });
+        });
+    </script>
+    <button type="submit">Next</button>
+</form>
