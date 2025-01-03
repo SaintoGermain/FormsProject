@@ -41,8 +41,6 @@ namespace FormsProyect.Data
                 tb.Property(col => col.PasswordHash)
                     .HasMaxLength(50)
                     .IsRequired();
-                tb.Property(col => col.Active)
-                    .IsRequired();
 
                 tb.HasMany(col => col.Forms)
                     .WithOne(col => col.Users)

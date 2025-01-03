@@ -37,8 +37,20 @@ namespace FormsProyect.Controllers
             {
                 _Name = model._Name,
                 Email = model.Email,
-                PasswordHash = model.PasswordHash
+                PasswordHash = model.PasswordHash,
+                Active = true,
+                Admin = true,
             };
+
+            Users? user_search = await _appDBContext.Users
+                .Where(u =>
+                    u.Email == model.Email
+                ).FirstOrDefaultAsync();
+            if (user_search != null)
+            {
+                ViewData["Message"] = "The email is already registered";
+                return View();
+            }
 
             await _appDBContext.Users.AddAsync(user);
             await _appDBContext.SaveChangesAsync();
@@ -51,7 +63,7 @@ namespace FormsProyect.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-            if (User.Identity!.IsAuthenticated) return RedirectToAction("AdminPage","Home");
+            if (User.Identity!.IsAuthenticated) return RedirectToAction("Page","Home");
             return View();
         }
 
@@ -63,15 +75,16 @@ namespace FormsProyect.Controllers
                     u.Email == model.Email &&
                     u.PasswordHash == model.PasswordHash
                 ).FirstOrDefaultAsync();
-            if(user_search == null) {
-                ViewData["Message"] = "The user couldn't be found";
+            if(user_search == null || !user_search.Active) {
+                ViewData["Message"] = "The user couldn't be found or it's blocked";
                 return View();
             }
 
             List<Claim> claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.Name, user_search._Name),
-                new Claim(ClaimTypes.Email, user_search.Email)
+                new Claim(ClaimTypes.Email, user_search.Email),
+                new Claim("Admin", user_search.Admin.ToString())
             };
 
             ClaimsIdentity clIdentity = new ClaimsIdentity(claims,CookieAuthenticationDefaults.AuthenticationScheme);
@@ -86,7 +99,7 @@ namespace FormsProyect.Controllers
                 properties
                 );
 
-            return RedirectToAction("AdminPage", "Home");
+            return RedirectToAction("Page", "Home");
         }
     }
 }

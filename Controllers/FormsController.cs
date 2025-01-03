@@ -38,20 +38,20 @@ namespace FormsProyect.Controllers
         {
             if (!ModelState.IsValid)
             {
-                // Si el modelo no es válido, recarga los topics y devuelve la vista
+                // If the model is wrong, it returns the view
                 model.Topics = await _appDBContext.Topics.ToListAsync();
                 return View(model);
             }
 
-            // Obtener el usuario logeado
+            // Get logged user
             string? userEmail = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
             if (string.IsNullOrEmpty(userEmail)) return Unauthorized();
 
-            // Buscar el usuario en la base de datos
+            // Search the user in the DB
             user = await _appDBContext.Users.FirstOrDefaultAsync(u => u.Email == userEmail);
             if (user == null) return Unauthorized();
 
-            // Manejo de Tags
+            // Tags
             var tagsJson = model.Tags;
             var tagList = JsonConvert.DeserializeObject<List<TagModel>>(tagsJson);
 
@@ -62,7 +62,7 @@ namespace FormsProyect.Controllers
                 var existingTag = await _appDBContext.Tags.FirstOrDefaultAsync(t => t._TagName == tag.Value);
                 if (existingTag == null)
                 {
-                    // Crear nuevo tag si no existe
+                    // Create new tag if it doesn't exist
                     var newTag = new Tags
                     {
                         _TagName = tag.Value
@@ -71,7 +71,7 @@ namespace FormsProyect.Controllers
                 }
             }
 
-            // Agregar los nuevos tags a la base de datos
+            // Add new tags
             if (tagsToSave.Any())
             {
                 _appDBContext.Tags.AddRange(tagsToSave);

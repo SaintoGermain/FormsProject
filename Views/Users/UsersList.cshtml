@@ -14,7 +14,9 @@
                     <th>User ID</th>
                     <th>Full Name</th>
                     <th>E-mail</th>
-                    <th></th>
+                    <th>Blocked</th>
+                    <th>User Status</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,21 +25,17 @@
                         <td>@item.UserId</td>
                         <td>@item._Name</td>
                         <td>@item.Email</td>
+                        <td>@(item.Active ? "Unblocked" : "Blocked")</td>
+                        <td>@(item.Admin ? "Admin" : "User")</td>
                         <td>
-                            <a> 
-                                Block
-                            </a>
-                            <a> 
-                                Unblock
-                            </a>
-                            <a> 
+                            <a asp-controller= "Users" asp-action="Delete" asp-route-id="@item.UserId" onclick="return Confirm()" class="btn btn-danger">
                                 Delete User
                             </a>
-                            <a> 
-                                Add to Admins
+                            <a asp-controller="Users" asp-action="Block" asp-route-id="@item.UserId" class="btn @(item.Active ? "btn-danger" : "btn-primary")">
+                                @(item.Active ? "Block" : "Unblock")
                             </a>
-                            <a>
-                                Remove from Admins
+                            <a asp-controller="Users" asp-action="AddAdmin" asp-route-id="@item.UserId" class="btn @(item.Admin ? "btn-danger" : "btn-primary")">
+                                @(item.Admin ? "Remove from Admins" : "Add to Admins")
                             </a>
                         </td>
                     </tr>
@@ -46,3 +44,11 @@
         </table>
     </div>
 </div>
+
+@section Script{
+    <script>
+        function Confirm(){
+            return confirm("Are you sure you want to delete this user?")
+        }
+    </script>
+}

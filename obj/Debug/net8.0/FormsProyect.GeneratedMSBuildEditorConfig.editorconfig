@@ -44,12 +44,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRm9ybXNcUXVlc3Rpb25zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[G:/Desktop2/iTransition/iTransitionProject/FormsProyect/Views/Home/AdminPage.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZG1pblBhZ2UuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [G:/Desktop2/iTransition/iTransitionProject/FormsProyect/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/Desktop2/iTransition/iTransitionProject/FormsProyect/Views/Home/Page.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQYWdlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [G:/Desktop2/iTransition/iTransitionProject/FormsProyect/Views/Shared/Error.cshtml]
@@ -62,6 +62,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [G:/Desktop2/iTransition/iTransitionProject/FormsProyect/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/Desktop2/iTransition/iTransitionProject/FormsProyect/Views/Shared/_NonAuthUserLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ob25BdXRoVXNlckxheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[G:/Desktop2/iTransition/iTransitionProject/FormsProyect/Views/Shared/_UserLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Vc2VyTGF5b3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [G:/Desktop2/iTransition/iTransitionProject/FormsProyect/Views/Shared/_ValidationScriptsPartial.cshtml]

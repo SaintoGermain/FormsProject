@@ -14,13 +14,12 @@
         <div class="bg-dark border-right" id="sidebar-wrapper">
             <div class="sidebar-heading text-white">iTra Forms </div>
             <div class="list-group list-group-flush">
-                <a class="list-group-item list-group-item-action bg-dark text-white" asp-area="" asp-controller="Home" asp-action="AdminPage">Home</a>
+                <a class="list-group-item list-group-item-action bg-dark text-white" asp-area="" asp-controller="Home" asp-action="Page">Home</a>
                 <a class="list-group-item list-group-item-action bg-dark text-white" asp-area="" asp-controller="Users" asp-action="UsersList">Manage Users</a>
                 <a class="list-group-item list-group-item-action bg-dark text-white" asp-area="" asp-controller="Forms" asp-action="Forms">Create Template</a>
                 <a class="list-group-item list-group-item-action bg-dark text-white" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
             </div>
         </div>
-        <!-- /#sidebar-wrapper -->
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
@@ -29,22 +28,20 @@
             </nav>
 
             <div class="container-fluid mt-3">
-                @RenderBody() <!-- Aquí se carga el contenido de las demás vistas -->
+                @RenderBody()
             </div>
         </div>
-        <!-- /#page-content-wrapper -->
     </div>
-    <!-- /#wrapper -->
     <!-- Scripts -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/tagify.min.js"></script>
     <script>
-        // Script para colapsar y expandir la sidebar
         $("#menu-toggle").click(function (e) {
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
     </script>
+    @await RenderSectionAsync("Script", required: false)
 </body>
 </html>

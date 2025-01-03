@@ -169,3 +169,10 @@ G:\Desktop2\iTransition\iTransitionProject\FormsProyect\obj\Release\net8.0\refin
 G:\Desktop2\iTransition\iTransitionProject\FormsProyect\obj\Release\net8.0\FormsProyect.pdb
 G:\Desktop2\iTransition\iTransitionProject\FormsProyect\obj\Release\net8.0\FormsProyect.genruntimeconfig.cache
 G:\Desktop2\iTransition\iTransitionProject\FormsProyect\obj\Release\net8.0\ref\FormsProyect.dll
+G:\Desktop2\iTransition\iTransitionProject\FormsProyect\bin\Release\net8.0\out\web.config
+G:\Desktop2\iTransition\iTransitionProject\FormsProyect\bin\Release\net8.0\out\appsettings.Development.json
+G:\Desktop2\iTransition\iTransitionProject\FormsProyect\bin\Release\net8.0\out\appsettings.json
+G:\Desktop2\iTransition\iTransitionProject\FormsProyect\bin\Release\net8.0\out\FormsProyect.deps.json
+G:\Desktop2\iTransition\iTransitionProject\FormsProyect\bin\Release\net8.0\out\FormsProyect.runtimeconfig.json
+G:\Desktop2\iTransition\iTransitionProject\FormsProyect\bin\Release\net8.0\out\FormsProyect.staticwebassets.endpoints.json
+G:\Desktop2\iTransition\iTransitionProject\FormsProyect\obj\Release\net8.0\staticwebassets.upToDateCheck.txt

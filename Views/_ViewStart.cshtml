@@ -1,3 +1,10 @@
 ﻿@{
-    Layout = "_Layout";
+    Layout = "_UserLayout";
+    var isAdminClaim = User.Claims.FirstOrDefault(c => c.Type == "Admin")?.Value;
+    var isAdmin = !string.IsNullOrEmpty(isAdminClaim) && bool.Parse(isAdminClaim);
+
+    if (isAdmin)
+    { 
+        Layout = "_AdminLayout";
+    }
 }
