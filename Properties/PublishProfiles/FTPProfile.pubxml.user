@@ -7,7 +7,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAZsOrnrfAwkGMY+sAGHnMswAAAAACAAAAAAAQZgAAAAEAACAAAADdkYSXY8vGOXmS6pG9C0bfySojjh0HnzXy6tNS5ZM+wAAAAAAOgAAAAAIAACAAAABv0a/KfzEUbIKzN76lQe2EOTZSjK6scJZzICQYfwk5SiAAAADqOiD9eRpA702S+ugbCMWHIQIBIPqFMSoSoFyUmeuarUAAAACMZKjeJR4nfBMhnODZndbyhOxv0hGRBrREHxYp+eZ39spuLOxXP6kwWBX0IEN42XBEPzXu4tBjUQgNW6L8qnKV</EncryptedPassword>
     <_PublishTargetUrl>ftp://155.254.244.35/www.itraforms.somee.com</_PublishTargetUrl>
-    <History>True|2025-01-02T23:04:35.4847847Z||;False|2025-01-02T16:59:16.1445075-06:00||;True|2025-01-01T20:04:36.2156138-06:00||;</History>
+    <History>True|2025-01-05T01:43:25.4274636Z||;True|2025-01-02T17:04:35.4847847-06:00||;False|2025-01-02T16:59:16.1445075-06:00||;True|2025-01-01T20:04:36.2156138-06:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -15,7 +15,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>12/13/2024 15:31:32</publishTime>
     </File>
     <File Include="appsettings.json">
-      <publishTime>01/02/2025 16:59:31</publishTime>
+      <publishTime>01/04/2025 19:38:42</publishTime>
     </File>
     <File Include="Azure.Core.dll">
       <publishTime>02/26/2024 09:24:40</publishTime>
@@ -24,16 +24,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>06/10/2024 10:43:48</publishTime>
     </File>
     <File Include="FormsProyect.deps.json">
-      <publishTime>01/02/2025 16:59:42</publishTime>
+      <publishTime>01/04/2025 19:39:06</publishTime>
     </File>
     <File Include="FormsProyect.dll">
-      <publishTime>01/02/2025 16:59:42</publishTime>
+      <publishTime>01/04/2025 19:38:56</publishTime>
     </File>
     <File Include="FormsProyect.exe">
-      <publishTime>01/02/2025 16:59:42</publishTime>
+      <publishTime>01/04/2025 19:38:57</publishTime>
     </File>
     <File Include="FormsProyect.pdb">
-      <publishTime>01/02/2025 16:59:42</publishTime>
+      <publishTime>01/04/2025 19:38:56</publishTime>
     </File>
     <File Include="FormsProyect.runtimeconfig.json">
       <publishTime>12/31/2024 18:02:29</publishTime>
@@ -219,7 +219,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/22/2021 18:49:44</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>01/02/2025 16:59:43</publishTime>
+      <publishTime>01/04/2025 19:39:06</publishTime>
     </File>
     <File Include="wwwroot/css/bootstrap-grid.css">
       <publishTime>02/21/2024 11:42:26</publishTime>

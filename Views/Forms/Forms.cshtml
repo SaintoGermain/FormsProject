@@ -1,20 +1,21 @@
 ﻿@using FormsProyect.ViewModels
+@using Newtonsoft.Json
 @{
-    ViewData["Title"] = "Dashboard";
+    ViewData["Title"] = "Form Making";
 }
 @model FormViewModel
 <link rel="stylesheet" href="~/css/tagify.css">
 <script src="~/js/tagify.js"></script>
-<h2>Crear Formulario</h2>
+<h2>Form Making</h2>
 
 <form asp-action="Forms" method="post">
     <div class="form-group">
-        <label for="Title">Título del Formulario</label>
+        <label for="Title">Form Title</label>
         <input asp-for="Title" class="form-control" />
     </div>
 
     <div class="form-group">
-        <label for="Description">Descripción</label>
+        <label for="Description">Description</label>
         <textarea asp-for="Description" class="form-control"></textarea>
     </div>
 
@@ -79,21 +80,90 @@
         <label for="Tags">Tags</label>
         <input id="Tags" asp-for="Tags" class="form-control" placeholder="Add tags..." />
     </div>
-
+    <hr />
+    <label>Public Template</label>
+    <input type="checkbox" id="IsPublic" name="IsPublic" value="true" onclick="toggleAllowedUsers()" />
+    <div id="allowed-users-group" class="form-group mb-4" style="display: none;">
+        <label for="AllowedUsers">Allowed Users</label>
+        <input id="AllowedUsers" asp-for="AllowedUsers" class="form-control" placeholder="Add users by name or email" required />
+    </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var input = document.querySelector('#Tags');
 
+            var listTagsTable = @Html.Raw(JsonConvert.SerializeObject(Model.TagsL));
+
             new Tagify(input, {
                 delimiters: " ",
-                whitelist: ["Tag1", "Tag2", "Tag3"],
+                whitelist: listTagsTable,
                 maxTags: 10,
                 dropdown: {
-                    enabled: 0,
+                    enabled: 1,
                     maxItems: 10,
                 }
             });
         });
     </script>
-    <button type="submit">Next</button>
+    <script>
+            document.addEventListener('DOMContentLoaded', function () {
+            const input = document.getElementById('_Name');
+
+            // Inicializa Tagify
+            const tagify = new Tagify(input, {
+                enforceWhitelist: true, // Solo permite agregar usuarios de la lista
+                whitelist: [], // La lista se llenará dinámicamente
+                dropdown: {
+                    enabled: 1, // Muestra la lista al escribir
+                    maxItems: 10, // Máximo de resultados a mostrar
+                    position: "text", // Posición relativa al texto
+                },
+            });
+
+            // Detecta cambios en el campo de entrada
+            tagify.on('input', async function (e) {
+                const query = e.detail.value.trim();
+
+                if (!query) {
+                    tagify.whitelist = [];
+                    tagify.dropdown.hide();
+                    return;
+                }
+
+                // Llama al controlador para obtener los usuarios
+                const response = await fetch(`FormsController/SearchUsers?query=${query}`);
+                const data = await response.json();
+
+                // Actualiza la lista blanca de Tagify
+                tagify.whitelist = data.map(user => ({
+                    value: user.Name,
+                    email: user.Email,
+                }));
+
+                // Muestra el dropdown con los resultados
+                tagify.dropdown.show();
+            });
+
+            // Opcional: Mostrar email en el campo cuando se selecciona un usuario
+            tagify.on('add', function (e) {
+                const selected = e.detail.data;
+                console.log(`Usuario seleccionado: ${selected.value} (${selected.email})`);
+            });
+        });
+    </script>
+    <script>
+        function toggleAllowedUsers() {
+            const isPublic = document.getElementById("IsPublic").checked;
+            const allowedUsersGroup = document.getElementById("allowed-users-group");
+
+            if (isPublic) {
+                allowedUsersGroup.style.display = "none"; // Oculta el campo
+            } else {
+                allowedUsersGroup.style.display = "block"; // Muestra el campo
+            }
+        }
+
+        // Inicializar visibilidad al cargar la página
+        document.addEventListener("DOMContentLoaded", toggleAllowedUsers);
+    </script>
+    <button class="row-cols-5" type="submit">Next</button>
 </form>

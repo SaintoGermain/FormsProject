@@ -7,6 +7,7 @@ using Azure;
 using Microsoft.SqlServer.Server;
 using Newtonsoft.Json;
 using System.Security.Claims;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace FormsProyect.Controllers
 {
@@ -22,13 +23,27 @@ namespace FormsProyect.Controllers
         }
 
         [HttpGet]
-        public IActionResult Forms()
+        public IActionResult Forms(string query)
         {
+
             var topics = _appDBContext.Topics.ToList();
+            var tags = _appDBContext.Tags.Select(t => t._TagName).ToList();
+            var allowedUsers = _appDBContext.Users
+            .Where(u => u._Name.Contains(query) || u.Email.Contains(query))
+               .Select(u => new AllowedUsersModel
+               {
+                   Name = u._Name,
+                   Email = u.Email
+               })
+               .Take(10)
+               .ToList();
+
 
             var viewModel = new FormViewModel
             {
-                Topics = topics
+                Topics = topics,
+                TagsL = tags,
+                AllowedUsers = allowedUsers
             };
             return View(viewModel);
         }
@@ -54,8 +69,14 @@ namespace FormsProyect.Controllers
             // Tags
             var tagsJson = model.Tags;
             var tagList = JsonConvert.DeserializeObject<List<TagModel>>(tagsJson);
-
             var tagsToSave = new List<Tags>();
+            //Allowed Users
+            var allowedUsersJson = model._Name;
+            var allowedUsersList = JsonConvert.DeserializeObject<List<AllowedUsersModel>>(allowedUsersJson);
+            var allowedUsersToSave = new List<AllowedUsers>();
+            //FormTags
+            var formTagsToSave = new List<FormTags>();
+            
 
             foreach (var tag in tagList)
             {
@@ -78,39 +99,114 @@ namespace FormsProyect.Controllers
                 await _appDBContext.SaveChangesAsync();
             }
 
-
-
             var form = new Forms
             {
                 Title = model.Title,
                 Descr = model.Description,
                 UserId = user.UserId,
                 TopicID = model.SelectedTopicId,
+                IsPublic = model.IsPublic,
             };
 
+            _appDBContext.Forms.Add(form);
+            await _appDBContext.SaveChangesAsync();
 
+            foreach (var tag in tagList)
+            {
+                var existingTag = await _appDBContext.Tags.FirstOrDefaultAsync(t => t._TagName == tag.Value);
+                int TagIDSearch = 0;
 
-            return RedirectToAction("AdminPage", "Home");
-            //{
-            //    model.numberOfSingleLineQuestions,
-            //    model.numberOfMultipleLinesQuestions,
-            //    model.numberOfPositiveIntegersQuestions,
-            //    model.numberOfCheckboxQuestions
-            //});
+                if (existingTag != null)
+                {
+                    TagIDSearch = existingTag.TagID;
+                }
+
+                var formTags = new FormTags
+                {
+
+                    NoForm = form.NoForm,
+                    TagID = TagIDSearch,
+                };
+                formTagsToSave.Add(formTags);
+            }
+            _appDBContext.FormTags.AddRange(formTagsToSave);
+            await _appDBContext.SaveChangesAsync();
+
+            foreach (var allowUser in allowedUsersList)
+            {
+                var existingUser = await _appDBContext.Users.FirstOrDefaultAsync(t => t.UserId == allowUser.UserIdentifier);
+                int UserIDSearch = 0;
+                Console.WriteLine("====================================================");
+                Console.WriteLine(existingUser);
+                if (existingUser != null)
+                {
+                    UserIDSearch = existingUser.UserId;
+                }
+                Console.WriteLine("====================================================");
+                Console.WriteLine(existingUser);
+                // Create new tag if it doesn't exist
+                var allowedUsers = new AllowedUsers
+                {
+
+                    NoForm = form.NoForm,
+                    UserId = UserIDSearch,
+                };
+                allowedUsersToSave.Add(allowedUsers);
+            }
+            _appDBContext.AllowedUsers.AddRange(allowedUsersToSave);
+            await _appDBContext.SaveChangesAsync();
+
+            return RedirectToAction("Questions", "Forms", new {
+                model.numberOfSingleLineQuestions,
+                model.numberOfMultipleLinesQuestions,
+                model.numberOfPositiveIntegersQuestions,
+                model.numberOfCheckboxQuestions,
+                form.NoForm,
+            });
+        }
+
+        [HttpGet]
+        public IActionResult Questions(int numberOfSingleLineQuestions, int numberOfMultipleLinesQuestions, int numberOfPositiveIntegersQuestions, int numberOfCheckboxQuestions, int NoForm)
+        {
+            var model = new FormViewModel
+            {
+                numberOfSingleLineQuestions = numberOfSingleLineQuestions,
+                numberOfMultipleLinesQuestions = numberOfMultipleLinesQuestions,
+                numberOfPositiveIntegersQuestions = numberOfPositiveIntegersQuestions,
+                numberOfCheckboxQuestions = numberOfCheckboxQuestions,
+                FormID = NoForm,
+            };
+            return View(model);
         }
 
         [HttpPost]
-        public IActionResult Questions(int numberOfSingleLineQuestions, int numberOfMultipleLinesQuestions, int numberOfPositiveIntegersQuestions, int numberOfCheckboxQuestions)
+        public async Task<IActionResult> Questions(FormViewModel model)
         {
-            var model = new QuestionsViewModel
-            {
-                NumberOfSingleLineQuestions = numberOfSingleLineQuestions,
-                NumberOfMultipleLinesQuestions = numberOfMultipleLinesQuestions,
-                NumberOfPositiveIntegersQuestions = numberOfPositiveIntegersQuestions,
-                NumberOfCheckboxQuestions = numberOfCheckboxQuestions
-            };
+            var questionsToSave = new List<Questions>();
 
-            return View(model);
+            foreach (var question in model.Questions)
+            {
+                Console.WriteLine($"Title: {question.QuestionTitle}, Show: {question.QuestionShow}");
+                var newquestion = new Questions
+                {
+                    TitleQ = question.QuestionTitle.Length > 20
+                                ? question.QuestionTitle.Substring(0,20)
+                                : question.QuestionTitle,
+                    DescrQ = question.QuestionDescription.Length > 50
+                                ? question.QuestionDescription.Substring(0, 50)
+                                : question.QuestionDescription,
+                    _Show = question.QuestionShow,
+                    _Type = question.QuestionType,
+                    NoForm = model.FormID,
+                };
+                questionsToSave.Add(newquestion);
+            }   
+        
+
+            _appDBContext.Questions.AddRange(questionsToSave);
+            await _appDBContext.SaveChangesAsync();
+
+            return RedirectToAction("Page","Home");
         }
 
 

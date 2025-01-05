@@ -1,5 +1,75 @@
 ﻿@using FormsProyect.ViewModels
 @{
-    ViewData["Title"] = "Dashboard";
+    ViewData["Title"] = "Questions";
 }
 @model FormViewModel
+@{
+    int QNumber = 1;
+}
+<h2>Create Questions</h2>
+<form asp-action="Questions" method="post">
+    <input type="hidden" name="FormID" value="@Model.FormID" />
+    <div class="question-group">
+        <!-- Single Line Questions -->
+        @for(int i = 0; i < Model.numberOfSingleLineQuestions; i++){
+            <div class="form-group">
+                <label for="Questions_@(i)_QuestionText">Question @QNumber: Single Line</label>
+                <input type="text" name="Questions[@i].QuestionTitle" class="form-control" placeholder="Title" required />
+                <textarea name="Questions[@i].QuestionDescription" class="form-control" placeholder="Description" required></textarea>
+                <label>Show</label>
+                <input type="checkbox" name="Questions[@i].QuestionShow" value="true" />
+                <input type="hidden" name="Questions[@i].QuestionType" value="1" />
+                <hr />
+            </div>
+            QNumber++;
+        }
+
+        <!-- Multiple Line Questions -->
+        @for (int i = 0; i < Model.numberOfMultipleLinesQuestions; i++)
+        {
+            <div class="form-group">
+                <label for="Questions_@(i + Model.numberOfSingleLineQuestions)_QuestionText">Question @QNumber: Multiple Line</label>
+                <input type="text" name="Questions[@(i + Model.numberOfSingleLineQuestions)].QuestionTitle" class="form-control" placeholder="Title" required></input>
+                <textarea name="Questions[@(i + Model.numberOfSingleLineQuestions)].QuestionDescription" class="form-control" placeholder="Description" required></textarea>
+                <label>Show</label>
+                <input type="checkbox" name="Questions[@(i + Model.numberOfSingleLineQuestions)].QuestionShow" value="true" />
+                <input type="hidden" name="Questions[@(i + Model.numberOfSingleLineQuestions)].QuestionType" value="2" />
+                <hr />
+            </div>
+            QNumber++;
+        }
+
+        <!-- Positive Integer Questions -->
+        @for (int i = 0; i < Model.numberOfPositiveIntegersQuestions; i++)
+        {
+            <div class="form-group">
+                <label for="Questions_@(i + Model.numberOfSingleLineQuestions + Model.numberOfMultipleLinesQuestions)_QuestionText">Question @QNumber: Positive Integer</label>
+                <input type="text" name="Questions[@(i + Model.numberOfSingleLineQuestions + Model.numberOfMultipleLinesQuestions)].QuestionTitle" class="form-control" placeholder="Title" required />
+                <textarea name="Questions[@(i + Model.numberOfSingleLineQuestions + Model.numberOfMultipleLinesQuestions)].QuestionDescription" class="form-control" placeholder="Description" required></textarea>
+                <label>Show</label>
+                <input type="checkbox" name="Questions[@(i + Model.numberOfSingleLineQuestions + Model.numberOfMultipleLinesQuestions)].QuestionShow" value="true" />
+                <input type="hidden" name="Questions[@(i + Model.numberOfSingleLineQuestions + Model.numberOfMultipleLinesQuestions)].QuestionType" value="3" />
+                <hr />
+            </div>
+            QNumber++;
+        }
+
+        <!-- Checkbox Questions -->
+        @for (int i = 0; i < Model.numberOfCheckboxQuestions; i++)
+        {
+            <div class="form-group">
+                <label for="Questions_@(i + Model.numberOfSingleLineQuestions + Model.numberOfMultipleLinesQuestions + Model.numberOfPositiveIntegersQuestions)_QuestionText">Question @QNumber: Checkbox</label>
+                <input type="text" name="Questions[@(i + Model.numberOfSingleLineQuestions + Model.numberOfMultipleLinesQuestions + Model.numberOfPositiveIntegersQuestions)].QuestionTitle" class="form-control" placeholder="Title" required />
+                <textarea name="Questions[@(i + Model.numberOfSingleLineQuestions + Model.numberOfMultipleLinesQuestions + Model.numberOfPositiveIntegersQuestions)].QuestionDescription" class="form-control" placeholder="Description" required></textarea>
+                <label>Show</label>
+                <input type="checkbox" name="Questions[@(i + Model.numberOfSingleLineQuestions + Model.numberOfMultipleLinesQuestions + Model.numberOfPositiveIntegersQuestions)].QuestionShow" value="true" />
+                <input type="hidden" name="Questions[@(i + Model.numberOfSingleLineQuestions + Model.numberOfMultipleLinesQuestions + Model.numberOfPositiveIntegersQuestions)].QuestionType" value="4" />
+                <hr />
+            </div>
+            QNumber++;
+        }
+    </div>
+    <div class="col-10">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>

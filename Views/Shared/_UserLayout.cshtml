@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MiApp</title>
+    <title>@ViewData["Title"] - iTraForms</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/styles.css" />
     <link rel="stylesheet" href="~/css/tagify.css">
@@ -23,7 +23,11 @@
         <div id="page-content-wrapper">
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 <button class="btn btn-primary ms-2" id="menu-toggle">☰</button>
-                <span class="navbar-brand ms-2">Página Principal</span>
+                <span class="navbar-brand ms-2"></span>
+                <form class="d-flex ms-auto" method="get" action="/Search">
+                    <input class="form-control me-2" type="search" placeholder="Search Template..." aria-label="Search" name="query">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
             </nav>
 
             <div class="container-fluid mt-3">
