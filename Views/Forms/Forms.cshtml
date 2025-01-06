@@ -105,48 +105,43 @@
         });
     </script>
     <script>
-            document.addEventListener('DOMContentLoaded', function () {
-            const input = document.getElementById('_Name');
+        document.addEventListener('DOMContentLoaded', function () {
+            const input = document.querySelector('#AllowedUsers');
 
-            // Inicializa Tagify
-            const tagify = new Tagify(input, {
-                enforceWhitelist: true, // Solo permite agregar usuarios de la lista
-                whitelist: [], // La lista se llenará dinámicamente
-                dropdown: {
-                    enabled: 1, // Muestra la lista al escribir
-                    maxItems: 10, // Máximo de resultados a mostrar
-                    position: "text", // Posición relativa al texto
-                },
-            });
+            // Obtener el valor del input de búsqueda (query)
+            input.addEventListener('input', function () {
+                const query = input.value;  // Obtener el valor actual del input
 
-            // Detecta cambios en el campo de entrada
-            tagify.on('input', async function (e) {
-                const query = e.detail.value.trim();
+                // Llamada a la API para obtener los usuarios
+                fetch(`/Forms/SearchUsers?query=${encodeURIComponent(query)}`)
+                    .then(response => response.json())  // Convierte la respuesta en JSON
+                    .then(data => {
+                        console.log('Usuarios recibidos:', data);
+                        if (input.tagify) {
+                            input.tagify.destroy();
+                        }
+                        // Inicializa Tagify con los usuarios obtenidos
+                        const tagify = new Tagify(input, {
+                            delimiters: " ",
+                            enforceWhitelist: true,
+                            whitelist: data.map(user => ({
+                                value: `${user.Name} (${user.Email})`,  // Formato: Nombre (Email)
+                                name: user.Name,
+                                email: user.Email
+                            })),
+                            dropdown: {
+                                enabled: 1,
+                                position: "text",
+                            },
+                        });
 
-                if (!query) {
-                    tagify.whitelist = [];
-                    tagify.dropdown.hide();
-                    return;
-                }
-
-                // Llama al controlador para obtener los usuarios
-                const response = await fetch(`FormsController/SearchUsers?query=${query}`);
-                const data = await response.json();
-
-                // Actualiza la lista blanca de Tagify
-                tagify.whitelist = data.map(user => ({
-                    value: user.Name,
-                    email: user.Email,
-                }));
-
-                // Muestra el dropdown con los resultados
-                tagify.dropdown.show();
-            });
-
-            // Opcional: Mostrar email en el campo cuando se selecciona un usuario
-            tagify.on('add', function (e) {
-                const selected = e.detail.data;
-                console.log(`Usuario seleccionado: ${selected.value} (${selected.email})`);
+                        // Manejo de selección de usuarios
+                        tagify.on('add', function (e) {
+                            const selected = e.detail.data;
+                            console.log(`Usuario seleccionado: ${selected.value}`);
+                        });
+                    })
+                    .catch(error => console.error('Error fetching users:', error)); // Manejo de errores
             });
         });
     </script>

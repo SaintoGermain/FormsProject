@@ -23,27 +23,35 @@ namespace FormsProyect.Controllers
         }
 
         [HttpGet]
-        public IActionResult Forms(string query)
+        public IActionResult SearchUsers(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+                return Json(new List<object>());
+
+            var allowedUsers = _appDBContext.Users
+                .Where(u => u._Name.Contains(query) || u.Email.Contains(query))
+                .Select(u => new
+                {
+                    Name = u._Name,
+                    Email = u.Email
+                })
+                .Take(10)
+                .ToList();
+
+            return Json(allowedUsers);
+        }
+
+        [HttpGet]
+        public IActionResult Forms()
         {
 
             var topics = _appDBContext.Topics.ToList();
             var tags = _appDBContext.Tags.Select(t => t._TagName).ToList();
-            var allowedUsers = _appDBContext.Users
-            .Where(u => u._Name.Contains(query) || u.Email.Contains(query))
-               .Select(u => new AllowedUsersModel
-               {
-                   Name = u._Name,
-                   Email = u.Email
-               })
-               .Take(10)
-               .ToList();
-
 
             var viewModel = new FormViewModel
             {
                 Topics = topics,
                 TagsL = tags,
-                AllowedUsers = allowedUsers
             };
             return View(viewModel);
         }
@@ -132,29 +140,29 @@ namespace FormsProyect.Controllers
             _appDBContext.FormTags.AddRange(formTagsToSave);
             await _appDBContext.SaveChangesAsync();
 
-            foreach (var allowUser in allowedUsersList)
-            {
-                var existingUser = await _appDBContext.Users.FirstOrDefaultAsync(t => t.UserId == allowUser.UserIdentifier);
-                int UserIDSearch = 0;
-                Console.WriteLine("====================================================");
-                Console.WriteLine(existingUser);
-                if (existingUser != null)
-                {
-                    UserIDSearch = existingUser.UserId;
-                }
-                Console.WriteLine("====================================================");
-                Console.WriteLine(existingUser);
-                // Create new tag if it doesn't exist
-                var allowedUsers = new AllowedUsers
-                {
+            //foreach (var allowUser in allowedUsersList)
+            //{
+            //    var existingUser = await _appDBContext.Users.FirstOrDefaultAsync(t => t.UserId == allowUser.UserIdentifier);
+            //    int UserIDSearch = 0;
+            //    Console.WriteLine("====================================================");
+            //    Console.WriteLine(existingUser);
+            //    if (existingUser != null)
+            //    {
+            //        UserIDSearch = existingUser.UserId;
+            //    }
+            //    Console.WriteLine("====================================================");
+            //    Console.WriteLine(existingUser);
+            //    // Create new tag if it doesn't exist
+            //    var allowedUsers = new AllowedUsers
+            //    {
 
-                    NoForm = form.NoForm,
-                    UserId = UserIDSearch,
-                };
-                allowedUsersToSave.Add(allowedUsers);
-            }
-            _appDBContext.AllowedUsers.AddRange(allowedUsersToSave);
-            await _appDBContext.SaveChangesAsync();
+            //        NoForm = form.NoForm,
+            //        UserId = UserIDSearch,
+            //    };
+            //    allowedUsersToSave.Add(allowedUsers);
+            //}
+            //_appDBContext.AllowedUsers.AddRange(allowedUsersToSave);
+            //await _appDBContext.SaveChangesAsync();
 
             return RedirectToAction("Questions", "Forms", new {
                 model.numberOfSingleLineQuestions,
