@@ -1,0 +1,53 @@
+﻿@using FormsProyect.ViewModels
+@using Newtonsoft.Json
+@{
+    ViewData["Title"] = "Form Making";
+}
+@model ProfileViewModel
+
+<h2>My Profile</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <table class="table table-bordered border-black">
+                <thead>
+                    <tr>
+                        <th class="text-center">My Forms</th>
+                    </tr>                    
+                </thead>
+                <tbody>
+                    <td>
+                        @if (Model.Forms != null && Model.Forms.Any())
+                        {
+                            @foreach (var form in Model.Forms)
+                            {
+                            <div>
+                                <h4>@form.Title</h4>
+                                <p>@form.Descr</p>
+                                <a asp-controller="Home" asp-action="EditForm" asp-route-id="@form.NoForm">
+                                    Edit Form
+                                </a>
+                            </div>
+                            <hr />
+                            }
+                        }
+                        else
+                        {
+                        <p>No forms available.</p>
+                        }
+                    </td>
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <table class="table table-bordered ">
+                <thead>
+                    <tr>
+                        <th class="text-center">My Filled Forms</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>

@@ -84,6 +84,7 @@ namespace FormsProyect.Controllers
             {
                 new Claim(ClaimTypes.Name, user_search._Name),
                 new Claim(ClaimTypes.Email, user_search.Email),
+                new Claim(ClaimTypes.NameIdentifier, user_search.UserId.ToString()),
                 new Claim("Admin", user_search.Admin.ToString())
             };
 

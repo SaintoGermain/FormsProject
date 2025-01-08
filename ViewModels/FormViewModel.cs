@@ -8,7 +8,6 @@ namespace FormsProyect.ViewModels
         public string Description { get; set; }
         public int SelectedTopicId { get; set; }
         public string Tags { get; set; }
-        public string _Name { get; set; }
         public bool IsPublic { get; set; }
         public int numberOfSingleLineQuestions { get; set; }
         public int numberOfMultipleLinesQuestions { get; set; }
@@ -17,6 +16,8 @@ namespace FormsProyect.ViewModels
         public int FormID { get; set; }
         public List<Topics> Topics { get; set; } = new List<Topics>();
         public List<string> TagsL { get; set; } = new List<string>();
+        public List<string> TagsEdit { get; set; } = new List<string>();
+        public List<int> QuestionsEdit { get; set; } = new List<int>();
         public List<string> Email { get; set; } = new List<string>();
         public List<AllowedUsersModel> AllowedUsers { get; set; }
         public List<QDetailsViewModel> Questions { get; set; } = new List<QDetailsViewModel>();
@@ -43,5 +44,11 @@ namespace FormsProyect.ViewModels
         public bool QuestionShow { get; set; }
         public int QuestionType { get; set; }
         public int NoForm { get; set; }
+    }
+
+    public class ProfileViewModel
+    {
+        public List<int> UsersIDS { get; set; }
+        public List<Forms> Forms { get; set; }
     }
 }

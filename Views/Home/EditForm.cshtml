@@ -6,9 +6,9 @@
 @model FormViewModel
 <link rel="stylesheet" href="~/css/tagify.css">
 <script src="~/js/tagify.js"></script>
-<h2>Form Making</h2>
+<h2>Edit Form</h2>
 
-<form asp-action="Forms" method="post">
+<form asp-controller="Home" asp-action="EditForm">
     <div class="form-group">
         <label for="Title">Form Title</label>
         <input asp-for="Title" class="form-control" />
@@ -22,14 +22,14 @@
     <hr />
 
     <div class="form-group mb-4">
-        <label for="topicForm">Topic:</label>
+        <label for="SelectedTopicId">Topic:</label>
         <select asp-for="SelectedTopicId" asp-items="@(new SelectList(Model.Topics, "TopicID", "_TopicName"))" class="form-control" required>
             <option value="">-- Select a Topic --</option>
         </select>
     </div>
 
     <hr />
-    
+
     <div class="mb-4">
         <label for="numberOfSingleLine">Number of Single-Line questions:</label>
         <select id="numberOfSingleLine" name="numberOfSingleLineQuestions" required>
@@ -52,7 +52,7 @@
         </select>
     </div>
 
-    <div class ="mb-4">
+    <div class="mb-4">
         <label for="numberOfPositiveIntegers">Number of Positive Integer questions:</label>
         <select id="numberOfPositiveIntegers" name="numberOfPositiveIntegersQuestions" required>
             <option value="0">0</option>
@@ -77,23 +77,24 @@
     <hr />
 
     <div class="form-group mb-4">
-        <label for="Tags">Tags</label>
-        <input id="Tags" asp-for="Tags" class="form-control" placeholder="Add tags..." />
+        <label for="TagsEdit">Tags</label>
+        <input id="TagsEdit" asp-for="Tags" class="form-control" placeholder="Add tags..." />
     </div>
     <hr />
     <label>Public Template</label>
-    <input type="checkbox" id="IsPublic" name="IsPublic" value="true" onclick="toggleAllowedUsers()" />
+    <input type="checkbox" id="IsPublic" name="IsPublic" asp-for="IsPublic" value="true" onclick="toggleAllowedUsers()" />
     <div id="allowed-users-group" class="form-group mb-4" style="display: none;">
         <label for="AllowedUsers">Allowed Users</label>
         <input id="AllowedUsers" asp-for="AllowedUsers" class="form-control" placeholder="Add users by name or email" />
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            var input = document.querySelector('#Tags');
+            var input = document.querySelector('#TagsEdit');
 
+            var existingTags = @Html.Raw(Json.Serialize(Model.TagsEdit));
             var listTagsTable = @Html.Raw(JsonConvert.SerializeObject(Model.TagsL));
 
-            new Tagify(input, {
+            var tagify = new Tagify(input, {
                 delimiters: " ",
                 whitelist: listTagsTable,
                 maxTags: 10,
@@ -102,6 +103,8 @@
                     maxItems: 10,
                 }
             });
+
+            tagify.addTags(existingTags);
         });
     </script>
     @* <script>

@@ -22,24 +22,24 @@ namespace FormsProyect.Controllers
             _appDBContext = appDbContext;
         }
 
-        [HttpGet]
-        public IActionResult SearchUsers(string query)
-        {
-            if (string.IsNullOrWhiteSpace(query))
-                return Json(new List<object>());
+        //[HttpGet]
+        //public IActionResult SearchUsers(string query)
+        //{
+        //    if (string.IsNullOrWhiteSpace(query))
+        //        return Json(new List<object>());
 
-            var allowedUsers = _appDBContext.Users
-                .Where(u => u._Name.Contains(query) || u.Email.Contains(query))
-                .Select(u => new
-                {
-                    Name = u._Name,
-                    Email = u.Email
-                })
-                .Take(10)
-                .ToList();
+        //    var allowedUsers = _appDBContext.Users
+        //        .Where(u => u._Name.Contains(query) || u.Email.Contains(query))
+        //        .Select(u => new
+        //        {
+        //            Name = u._Name,
+        //            Email = u.Email
+        //        })
+        //        .Take(10)
+        //        .ToList();
 
-            return Json(allowedUsers);
-        }
+        //    return Json(allowedUsers);
+        //}
 
         [HttpGet]
         public IActionResult Forms()
@@ -61,7 +61,6 @@ namespace FormsProyect.Controllers
         {
             if (!ModelState.IsValid)
             {
-                // If the model is wrong, it returns the view
                 model.Topics = await _appDBContext.Topics.ToListAsync();
                 return View(model);
             }
@@ -79,9 +78,9 @@ namespace FormsProyect.Controllers
             var tagList = JsonConvert.DeserializeObject<List<TagModel>>(tagsJson);
             var tagsToSave = new List<Tags>();
             //Allowed Users
-            var allowedUsersJson = model._Name;
-            var allowedUsersList = JsonConvert.DeserializeObject<List<AllowedUsersModel>>(allowedUsersJson);
-            var allowedUsersToSave = new List<AllowedUsers>();
+            //var allowedUsersJson = model._Name;
+            //var allowedUsersList = JsonConvert.DeserializeObject<List<AllowedUsersModel>>(allowedUsersJson);
+            //var allowedUsersToSave = new List<AllowedUsers>();
             //FormTags
             var formTagsToSave = new List<FormTags>();
             
@@ -109,8 +108,12 @@ namespace FormsProyect.Controllers
 
             var form = new Forms
             {
-                Title = model.Title,
-                Descr = model.Description,
+                Title = model.Title.Length > 20
+                    ? model.Title.Substring(0,20)
+                    : model.Title,
+                Descr = model.Description.Length > 50
+                    ? model.Description.Substring(0, 50)
+                    : model.Description,
                 UserId = user.UserId,
                 TopicID = model.SelectedTopicId,
                 IsPublic = model.IsPublic,
