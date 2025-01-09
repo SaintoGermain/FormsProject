@@ -78,14 +78,14 @@
 
     <div class="form-group mb-4">
         <label asp-for="Tags">Tags</label>
-        <input asp-for="Tags" class="form-control" placeholder="Add tags..." />
+        <input asp-for="Tags" class="form-control" placeholder="Add tags..." required />
     </div>
     <hr />
     <label asp-for="IsPublic">Public Template</label>
     <input type="checkbox" asp-for="IsPublic" value="true" onclick="toggleAllowedUsers()" />
     <div id="allowed-users-group" class="form-group mb-4" style="display: none;">
         <label asp-for="AllowedUsers">Allowed Users</label>
-        <input asp-for="AllowedUsers" class="form-control" placeholder="Add users by name or email" />
+        <input asp-for="AllowedUsers" class="form-control" placeholder="Add users by email" />
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -104,19 +104,35 @@
             });
         });
     </script>
+    @* <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var input = document.querySelector('#Users');
+
+            var listUsersTable = @Html.Raw(JsonConvert.SerializeObject(Model.UsersL));
+
+            new Tagify(input, {
+                delimiters: " ",
+                whitelist: listUsersTable,
+                maxTags: 10,
+                dropdown: {
+                    enabled: 1,
+                    maxItems: 10,
+                }
+            });
+        });
+    </script> *@
     <script>
         function toggleAllowedUsers() {
             const isPublic = document.getElementById("IsPublic").checked;
             const allowedUsersGroup = document.getElementById("allowed-users-group");
 
             if (isPublic) {
-                allowedUsersGroup.style.display = "none"; // Oculta el campo
+                allowedUsersGroup.style.display = "none";
             } else {
-                allowedUsersGroup.style.display = "block"; // Muestra el campo
+                allowedUsersGroup.style.display = "block";
             }
         }
 
-        // Inicializar visibilidad al cargar la página
         document.addEventListener("DOMContentLoaded", toggleAllowedUsers);
     </script>
     <button class="row-cols-5" type="submit">Next</button>

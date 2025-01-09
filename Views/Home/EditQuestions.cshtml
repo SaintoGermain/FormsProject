@@ -1,0 +1,91 @@
+﻿@using FormsProyect.ViewModels
+@{
+    ViewData["Title"] = "Questions";
+}
+@model FormViewModel
+@{
+    int QNumber = 1;
+}
+<h2>Create Questions</h2>
+<form asp-controller="Home" asp-action="EditQuestions" method="get">
+    <input type="hidden" name="NoForm" value="@Model.NoForm" />
+    <a asp-controller="Home" asp-action="AddQuestions" method="get">
+        <button type="submit" class="btn btn-primary">Add Question</button>
+    </a>
+    <div class="question-group">
+        <!-- Single Line Questions -->
+        @foreach (var question in Model.Questions.Where(q => q.QuestionType == 1))
+        {
+            <div class="form-group">
+                <label for="Questions_@(question.QuestionID)_QuestionText">Question @QNumber: Single Line</label>
+                <input type="text" name="Questions[@question.QuestionID].QuestionTitle" class="form-control" placeholder="Title" value="@question.QuestionTitle" required />
+                <textarea name="Questions[@question.QuestionID].QuestionDescription" class="form-control" placeholder="Description" required>@question.QuestionDescription</textarea>
+                <label>Show</label>
+                <input type="checkbox" name="Questions[@question.QuestionID].QuestionShow" value="true" @(question.QuestionShow ? "checked" : "") />
+                <input type="hidden" name="Questions[@question.QuestionID].QuestionType" value="1" />
+                <a asp-controller="Home" asp-action="DeleteQuestion" asp-route-id="@question.QuestionID" asp-route-NoForm="@Model.NoForm" class="btn btn-danger" method="get">
+                    Delete Question
+                </a>
+                <hr />
+            </div>
+            QNumber++;
+        }
+
+        <!-- Multiple Line Questions -->
+        @foreach (var question in Model.Questions.Where(q => q.QuestionType == 2))
+        {
+            <div class="form-group">
+                <label for="Questions_@(question.QuestionID)_QuestionText">Question @QNumber: Multiple Line</label>
+                <input type="text" name="Questions[@question.QuestionID].QuestionTitle" class="form-control" placeholder="Title" value="@question.QuestionTitle" required />
+                <textarea name="Questions[@question.QuestionID].QuestionDescription" class="form-control" placeholder="Description" required>@question.QuestionDescription</textarea>
+                <label>Show</label>
+                <input type="checkbox" name="Questions[@question.QuestionID].QuestionShow" value="true" @(question.QuestionShow ? "checked" : "") />
+                <input type="hidden" name="Questions[@question.QuestionID].QuestionType" value="2" />
+                <a asp-controller="Home" asp-action="DeleteQuestion" asp-route-id="@question.QuestionID" asp-route-NoForm="@Model.NoForm" class="btn btn-danger" method="get">
+                    Delete Question
+                </a>
+                <hr />
+            </div>
+            QNumber++;
+        }
+
+        <!-- Positive Integer Questions -->
+        @foreach (var question in Model.Questions.Where(q => q.QuestionType == 3))
+        {
+            <div class="form-group">
+                <label for="Questions_@(question.QuestionID)_QuestionText">Question @QNumber: Integer</label>
+                <input type="text" name="Questions[@question.QuestionID].QuestionTitle" class="form-control" placeholder="Title" value="@question.QuestionTitle" required />
+                <textarea name="Questions[@question.QuestionID].QuestionDescription" class="form-control" placeholder="Description" required>@question.QuestionDescription</textarea>
+                <label>Show</label>
+                <input type="checkbox" name="Questions[@question.QuestionID].QuestionShow" value="true" @(question.QuestionShow ? "checked" : "") />
+                <input type="hidden" name="Questions[@question.QuestionID].QuestionType" value="2" />
+                <a asp-controller="Home" asp-action="DeleteQuestion" asp-route-id="@question.QuestionID" asp-route-NoForm="@Model.NoForm" class="btn btn-danger" method="get">
+                    Delete Question
+                </a>
+                <hr />
+            </div>
+            QNumber++;
+        }
+
+        <!-- Checkbox Questions -->
+        @foreach (var question in Model.Questions.Where(q => q.QuestionType == 4))
+        {
+            <div class="form-group">
+                <label for="Questions_@(question.QuestionID)_QuestionText">Question @QNumber: Checkbox</label>
+                <input type="text" name="Questions[@question.QuestionID].QuestionTitle" class="form-control" placeholder="Title" value="@question.QuestionTitle" required />
+                <textarea name="Questions[@question.QuestionID].QuestionDescription" class="form-control" placeholder="Description" required>@question.QuestionDescription</textarea>
+                <label>Show</label>
+                <input type="checkbox" name="Questions[@question.QuestionID].QuestionShow" value="true" @(question.QuestionShow ? "checked" : "") />
+                <input type="hidden" name="Questions[@question.QuestionID].QuestionType" value="2" />
+                <a asp-controller="Home" asp-action="DeleteQuestion" asp-route-id="@question.QuestionID" asp-route-NoForm="@Model.NoForm" class=" btn btn-danger" method="get">
+                    Delete Question
+                </a>
+                <hr />
+            </div>
+            QNumber++;
+        }
+    </div>
+    <div class="col-10">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>

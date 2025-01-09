@@ -59,7 +59,7 @@ namespace FormsProyect.Controllers
             var tagList = JsonConvert.DeserializeObject<List<TagModel>>(tagsJson);
             var tagsToSave = new List<Tags>();
             //Allowed Users
-            //var allowedUsersJson = model._Name;
+            //var allowedUsersJson = model.Users;
             //var allowedUsersList = JsonConvert.DeserializeObject<List<AllowedUsersModel>>(allowedUsersJson);
             //var allowedUsersToSave = new List<AllowedUsers>();
             //FormTags
@@ -126,20 +126,16 @@ namespace FormsProyect.Controllers
 
             //foreach (var allowUser in allowedUsersList)
             //{
-            //    var existingUser = await _appDBContext.Users.FirstOrDefaultAsync(t => t.UserId == allowUser.UserIdentifier);
+            //    var existingUser = await _appDBContext.Users.FirstOrDefaultAsync(t => t.Email == allowUser.Email);
             //    int UserIDSearch = 0;
-            //    Console.WriteLine("====================================================");
-            //    Console.WriteLine(existingUser);
+
             //    if (existingUser != null)
             //    {
             //        UserIDSearch = existingUser.UserId;
             //    }
-            //    Console.WriteLine("====================================================");
-            //    Console.WriteLine(existingUser);
-            //    // Create new tag if it doesn't exist
+
             //    var allowedUsers = new AllowedUsers
             //    {
-
             //        NoForm = form.NoForm,
             //        UserId = UserIDSearch,
             //    };

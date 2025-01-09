@@ -38,10 +38,7 @@ namespace FormsProyect.Controllers
             var forms = _appDBContext.Forms
                 .Include(f => f.FormTags)
                 .ThenInclude(ft => ft.Tags)
-                .Include(f => f.Questions)
                 .FirstOrDefault(f => f.NoForm == id);
-            var questionsByType = forms.Questions.GroupBy(q => q._Type)
-                .ToDictionary(g => g.Key, g => g.Count());
 
             var topics = _appDBContext.Topics.ToList();
             var tags = _appDBContext.Tags.Select(t => t._TagName).ToList();
@@ -57,13 +54,20 @@ namespace FormsProyect.Controllers
                 Topics = topics,
                 TagsL = tags,
                 TagsEdit = tagNames,
-                numberOfSingleLineQuestions = questionsByType.ContainsKey(1) ? questionsByType[1] : 0,
-                numberOfMultipleLinesQuestions = questionsByType.ContainsKey(2) ? questionsByType[2] : 0,
-                numberOfPositiveIntegersQuestions = questionsByType.ContainsKey(3) ? questionsByType[3] : 0,
-                numberOfCheckboxQuestions = questionsByType.ContainsKey(4) ? questionsByType[4] : 0
             };
 
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteForm(int id)
+        {
+            Forms forms = await _appDBContext.Forms.FirstAsync(u => u.NoForm == id);
+
+            _appDBContext.Forms.Remove(forms);
+            await _appDBContext.SaveChangesAsync();
+
+            return RedirectToAction("Profile", "Home");
         }
 
         [HttpPost]
@@ -103,7 +107,6 @@ namespace FormsProyect.Controllers
                 _appDBContext.Tags.AddRange(tagsToSave);
                 await _appDBContext.SaveChangesAsync();
             }
-            // Elimina las preguntas anteriores y agrega las actualizadas
 
             foreach (var tag in tagList)
             {
@@ -128,14 +131,47 @@ namespace FormsProyect.Controllers
 
             // Guarda los cambios
             await _appDBContext.SaveChangesAsync();
-
-            return RedirectToAction("Profile", "Home", new
+            return RedirectToAction("EditQuestions", new
             {
-                model.numberOfSingleLineQuestions,
-                model.numberOfMultipleLinesQuestions,
-                model.numberOfPositiveIntegersQuestions,
-                model.numberOfCheckboxQuestions,
-                form.NoForm,
+                model.NoForm,
+            });
+        }
+
+        [HttpGet]
+        public IActionResult EditQuestions(int NoForm)
+        {
+            var forms = _appDBContext.Forms
+               .Include(f => f.Questions)
+               .FirstOrDefault(f => f.NoForm == NoForm);
+
+            var model = new FormViewModel
+            {
+                Questions = forms.Questions.Select(q => new QDetailsViewModel
+                {
+                    QuestionID = q.IDQuest,
+                    QuestionTitle = q.TitleQ,
+                    QuestionDescription = q.DescrQ,
+                    QuestionType = q._Type,
+                    QuestionShow = q._Show
+                }).ToList(),
+                NoForm = NoForm,
+            };
+            return View(model);
+        }
+
+        [HttpGet]
+        [Route("Home/DeleteQuestion/{id}/{NoForm}")]
+        public async Task<IActionResult> DeleteQuestion(int id, int NoForm)
+        {
+            Console.WriteLine($"QuestionID: {id}, NoForm: {NoForm}");
+            var questions = await _appDBContext.Questions.FirstOrDefaultAsync(u => u.IDQuest == id);
+            
+            _appDBContext.Questions.Remove(questions);
+            await _appDBContext.SaveChangesAsync();
+
+            return RedirectToAction("EditQuestions", new
+            {
+                NoForm,
             });
         }
 

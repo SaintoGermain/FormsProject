@@ -25,9 +25,15 @@
                             <div>
                                 <h4>@form.Title</h4>
                                 <p>@form.Descr</p>
-                                <a asp-controller="Home" asp-action="EditForm" asp-route-id="@form.NoForm">
-                                    Edit Form
-                                </a>
+                                <div class="d-flex justify-content-around">
+                                    <a asp-controller="Home" asp-action="EditForm" asp-route-id="@form.NoForm" class="btn btn-primary">
+                                        Edit Form
+                                    </a>
+                                    <form asp-controller="Home" asp-action="DeleteForm" asp-route-id="@form.NoForm" method="post">
+                                        <button type="submit" class="btn btn-danger">Delete Form</button>
+                                    </form>
+                                </div>
+                                
                             </div>
                             <hr />
                             }

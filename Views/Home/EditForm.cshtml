@@ -9,7 +9,7 @@
 <h2>Edit Form</h2>
 
 <form asp-controller="Home" asp-action="EditForm">
-    <input type="hidden" asp-for="NoForm"/>
+    <input type="hidden" name="NoForm" value="@Model.NoForm"/>
     <div class="form-group">
         <label asp-for="Title">Form Title</label>
         <input asp-for="Title" class="form-control" />
@@ -31,55 +31,9 @@
 
     <hr />
 
-    <div class="mb-4">
-        <label asp-for="numberOfSingleLineQuestions">Number of Single-Line questions:</label>
-        <select asp-for="numberOfSingleLineQuestions" required>
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-        </select>
-    </div>
-
-    <div class="mb-4">
-        <label asp-for="numberOfMultipleLinesQuestions">Number of Multiple-Lines questions:</label>
-        <select asp-for="numberOfMultipleLinesQuestions" required>
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-        </select>
-    </div>
-
-    <div class="mb-4">
-        <label asp-for="numberOfPositiveIntegersQuestions">Number of Positive Integer questions:</label>
-        <select asp-for="numberOfPositiveIntegersQuestions" required>
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-        </select>
-    </div>
-
-    <div class="mb-4">
-        <label asp-for="numberOfCheckboxQuestions">Number of Checkbox questions:</label>
-        <select asp-for="numberOfCheckboxQuestions" required>
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-        </select>
-    </div>
-
-    <hr />
-
     <div class="form-group mb-4">
         <label for="TagsEdit">Tags</label>
-        <input id="TagsEdit" asp-for="Tags" class="form-control" placeholder="Add tags..." />
+        <input id="TagsEdit" asp-for="Tags" class="form-control" placeholder="Add tags..." required/>
     </div>
     <hr />
     <label>Public Template</label>
