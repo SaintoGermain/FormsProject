@@ -9,20 +9,21 @@
 <h2>Edit Form</h2>
 
 <form asp-controller="Home" asp-action="EditForm">
+    <input type="hidden" asp-for="NoForm"/>
     <div class="form-group">
-        <label for="Title">Form Title</label>
+        <label asp-for="Title">Form Title</label>
         <input asp-for="Title" class="form-control" />
     </div>
 
     <div class="form-group">
-        <label for="Description">Description</label>
+        <label asp-for="Description">Description</label>
         <textarea asp-for="Description" class="form-control"></textarea>
     </div>
 
     <hr />
 
     <div class="form-group mb-4">
-        <label for="SelectedTopicId">Topic:</label>
+        <label asp-for="SelectedTopicId">Topic:</label>
         <select asp-for="SelectedTopicId" asp-items="@(new SelectList(Model.Topics, "TopicID", "_TopicName"))" class="form-control" required>
             <option value="">-- Select a Topic --</option>
         </select>
@@ -31,8 +32,8 @@
     <hr />
 
     <div class="mb-4">
-        <label for="numberOfSingleLine">Number of Single-Line questions:</label>
-        <select id="numberOfSingleLine" name="numberOfSingleLineQuestions" required>
+        <label asp-for="numberOfSingleLineQuestions">Number of Single-Line questions:</label>
+        <select asp-for="numberOfSingleLineQuestions" required>
             <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -42,8 +43,8 @@
     </div>
 
     <div class="mb-4">
-        <label for="numberOfMultipleLines">Number of Multiple-Lines questions:</label>
-        <select id="numberOfMultipleLines" name="numberOfMultipleLinesQuestions" required>
+        <label asp-for="numberOfMultipleLinesQuestions">Number of Multiple-Lines questions:</label>
+        <select asp-for="numberOfMultipleLinesQuestions" required>
             <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -53,8 +54,8 @@
     </div>
 
     <div class="mb-4">
-        <label for="numberOfPositiveIntegers">Number of Positive Integer questions:</label>
-        <select id="numberOfPositiveIntegers" name="numberOfPositiveIntegersQuestions" required>
+        <label asp-for="numberOfPositiveIntegersQuestions">Number of Positive Integer questions:</label>
+        <select asp-for="numberOfPositiveIntegersQuestions" required>
             <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -64,8 +65,8 @@
     </div>
 
     <div class="mb-4">
-        <label for="numberOfCheckbox">Number of Checkbox questions:</label>
-        <select id="numberOfCheckbox" name="numberOfCheckboxQuestions" required>
+        <label asp-for="numberOfCheckboxQuestions">Number of Checkbox questions:</label>
+        <select asp-for="numberOfCheckboxQuestions" required>
             <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -84,8 +85,8 @@
     <label>Public Template</label>
     <input type="checkbox" id="IsPublic" name="IsPublic" asp-for="IsPublic" value="true" onclick="toggleAllowedUsers()" />
     <div id="allowed-users-group" class="form-group mb-4" style="display: none;">
-        <label for="AllowedUsers">Allowed Users</label>
-        <input id="AllowedUsers" asp-for="AllowedUsers" class="form-control" placeholder="Add users by name or email" />
+        <label asp-for="AllowedUsers">Allowed Users</label>
+        <input asp-for="AllowedUsers" class="form-control" placeholder="Add users by name or email" />
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {

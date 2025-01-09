@@ -22,25 +22,6 @@ namespace FormsProyect.Controllers
             _appDBContext = appDbContext;
         }
 
-        //[HttpGet]
-        //public IActionResult SearchUsers(string query)
-        //{
-        //    if (string.IsNullOrWhiteSpace(query))
-        //        return Json(new List<object>());
-
-        //    var allowedUsers = _appDBContext.Users
-        //        .Where(u => u._Name.Contains(query) || u.Email.Contains(query))
-        //        .Select(u => new
-        //        {
-        //            Name = u._Name,
-        //            Email = u.Email
-        //        })
-        //        .Take(10)
-        //        .ToList();
-
-        //    return Json(allowedUsers);
-        //}
-
         [HttpGet]
         public IActionResult Forms()
         {
