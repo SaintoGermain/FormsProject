@@ -159,6 +159,12 @@ namespace FormsProyect.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public IActionResult EditQuestions()
+        {
+            return RedirectToAction("Page","Home");
+        }
+
         [HttpGet]
         [Route("Home/DeleteQuestion/{id}/{NoForm}")]
         public async Task<IActionResult> DeleteQuestion(int id, int NoForm)
