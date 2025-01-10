@@ -47,8 +47,12 @@ namespace FormsProyect.Controllers
             var viewModel = new FormViewModel
             {
                 NoForm = forms.NoForm,
-                Title = forms.Title,
-                Description = forms.Descr,
+                Title = forms.Title.Length > 20
+                    ? forms.Title.Substring(0, 20)
+                    : forms.Title,
+                Description = forms.Descr.Length > 50
+                    ? forms.Title.Substring(0, 50)
+                    : forms.Title,
                 SelectedTopicId = forms.TopicID,
                 IsPublic = forms.IsPublic,
                 Topics = topics,
@@ -77,8 +81,12 @@ namespace FormsProyect.Controllers
                     .Include(f => f.FormTags)
                     .FirstOrDefault(f => f.NoForm == model.NoForm);
 
-            form.Title = model.Title;
-            form.Descr = model.Description;
+            form.Title = model.Title.Length > 20
+                    ? model.Title.Substring(0, 20)
+                    : model.Title;
+            form.Descr = model.Description.Length > 50
+                    ? model.Description.Substring(0, 50)
+                    : model.Description;
             form.TopicID = model.SelectedTopicId;
             form.IsPublic = model.IsPublic;
 
@@ -169,7 +177,6 @@ namespace FormsProyect.Controllers
         [Route("Home/DeleteQuestion/{id}/{NoForm}")]
         public async Task<IActionResult> DeleteQuestion(int id, int NoForm)
         {
-            Console.WriteLine($"QuestionID: {id}, NoForm: {NoForm}");
             var questions = await _appDBContext.Questions.FirstOrDefaultAsync(u => u.IDQuest == id);
             
             _appDBContext.Questions.Remove(questions);

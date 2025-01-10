@@ -68,7 +68,6 @@ namespace FormsProyect.Controllers
             _appDBContext.Users.Update(users);
             await _appDBContext.SaveChangesAsync();
             return RedirectToAction(nameof(UsersList));
-
         }
 
         [HttpGet]

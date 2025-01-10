@@ -195,8 +195,7 @@ namespace FormsProyect.Controllers
             await _appDBContext.SaveChangesAsync();
 
             return RedirectToAction("Page","Home");
+
         }
-
-
     }
 }

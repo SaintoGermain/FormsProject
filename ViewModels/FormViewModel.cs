@@ -22,8 +22,7 @@ namespace FormsProyect.ViewModels
         public List<int> QuestionsEdit { get; set; } = new List<int>();
         public List<string> UsersL { get; set; } = new List<string>();
         public List<AllowedUsersModel> AllowedUsers { get; set; }
-        public List<QDetailsViewModel> Questions { get; set; } = new List<QDetailsViewModel>();
-        
+        public List<QDetailsViewModel> Questions { get; set; } = new List<QDetailsViewModel>(); 
     }
 
     public class TagModel
