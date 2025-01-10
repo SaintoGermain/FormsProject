@@ -47,12 +47,8 @@ namespace FormsProyect.Controllers
             var viewModel = new FormViewModel
             {
                 NoForm = forms.NoForm,
-                Title = forms.Title.Length > 20
-                    ? forms.Title.Substring(0, 20)
-                    : forms.Title,
-                Description = forms.Descr.Length > 50
-                    ? forms.Title.Substring(0, 50)
-                    : forms.Title,
+                Title = forms.Title,
+                Description = forms.Descr,
                 SelectedTopicId = forms.TopicID,
                 IsPublic = forms.IsPublic,
                 Topics = topics,
@@ -137,7 +133,6 @@ namespace FormsProyect.Controllers
             _appDBContext.FormTags.RemoveRange(form.FormTags);
             await _appDBContext.FormTags.AddRangeAsync(formTagsToSave);
 
-            // Guarda los cambios
             await _appDBContext.SaveChangesAsync();
             return RedirectToAction("EditQuestions", new
             {
@@ -168,8 +163,40 @@ namespace FormsProyect.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditQuestions()
+        public async Task<IActionResult> EditQuestions(FormViewModel model)
         {
+            var existingQuestions = _appDBContext.Questions
+                .Where(q => q.NoForm == model.NoForm)
+                .ToList();
+            Console.WriteLine($"Total Questions in model: {model.Questions.Count}");
+            Console.WriteLine($"Total Existing Questions: {existingQuestions.Count}");
+
+            foreach (var questionModel in model.Questions)
+            {
+                var existingQuestion = existingQuestions.FirstOrDefault(q => q.IDQuest == questionModel.QuestionID);
+                Console.WriteLine(existingQuestion.IDQuest);
+                Console.WriteLine(questionModel.QuestionID);
+                foreach (var question in existingQuestions)
+                {
+                    Console.WriteLine($"ID: {question.IDQuest}, Title: {question.TitleQ}, Description: {question.DescrQ}, Type: {question._Type}, Show: {question._Show}");
+                }
+                if (existingQuestion != null)
+                {
+                    Console.WriteLine("EXISTE");
+                    existingQuestion.TitleQ = questionModel.QuestionTitle.Length > 20
+                        ? questionModel.QuestionTitle.Substring(0, 20)
+                        : questionModel.QuestionTitle;
+
+                    existingQuestion.DescrQ = questionModel.QuestionDescription.Length > 50
+                        ? questionModel.QuestionDescription.Substring(0, 50)
+                        : questionModel.QuestionDescription;
+
+                    existingQuestion._Show = questionModel.QuestionShow;
+                    existingQuestion._Type = questionModel.QuestionType;
+                }
+            }
+
+            await _appDBContext.SaveChangesAsync();
             return RedirectToAction("Page","Home");
         }
 

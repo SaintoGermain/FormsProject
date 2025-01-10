@@ -7,7 +7,7 @@
     int QNumber = 1;
 }
 <h2>Create Questions</h2>
-<form asp-controller="Home" asp-action="EditQuestions">
+<form asp-controller="Home" asp-action="EditQuestions" method="post">
     <input type="hidden" name="NoForm" value="@Model.NoForm" />
     <a asp-controller="Home" asp-action="AddQuestions" method="get">
         <button type="submit" class="btn btn-primary">Add Question</button>
