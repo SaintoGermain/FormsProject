@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using FormsProyect.Models;
 using Microsoft.AspNetCore.Mvc;
-
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -9,9 +8,12 @@ using FormsProyect.Data;
 using FormsProyect.ViewModels;
 using FormsProyect.Models.Entities;
 using System.Security.Claims;
-using System;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using NetCoreForce.Client;
+using NetCoreForce.Client.Models;
+using System;
+using System.Threading.Tasks;
 
 namespace FormsProyect.Controllers
 {
@@ -250,5 +252,81 @@ namespace FormsProyect.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Login","Access");
         }
+
+        [HttpGet]
+        public IActionResult GetCurrentUser()
+        {
+            var user = HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+            var userDetails = _appDBContext.Users
+                .Where(u => u.Email == user)
+                .Select(u => new UserViewModel
+                {
+                    _Name = u._Name,
+                    Email = u.Email
+                })
+                .FirstOrDefault();
+
+            if (userDetails != null)
+            {
+                return Json(userDetails);
+            }
+
+            return NotFound("Usuario no encontrado");
+        }
+
+        [HttpPost]
+        [Route("Home/CreateSalesforceAccount")]
+        public async Task<IActionResult> CreateSalesforceAccount([FromBody] UserViewModel userDetails)
+        {
+            try
+            {
+                if (userDetails == null)
+                {
+                    return BadRequest("userDetails es nulo.");
+                }
+                Console.WriteLine($"Datos recibidos - Nombre: {userDetails._Name}, Email: {userDetails.Email}");
+
+                string instanceUrl = "https://login.salesforce.com/services/oauth2/token";
+                string clientId = "3MVG91oqviqJKoEGNcfx.RHrQ2kT3r2UIATQsGxLyYOnphRqR3uI0e_n_b5JSWSZ.IprmRDLHZtzJA2qnD5IT";
+                string clientSecret = "E32E5D3802259D52446D93D095E6B0D9D29B8DE92A5353A0AAE6C20F2B24FFA0";
+                string username = "noiremagg@hotmail.com";
+                string password = "NoireSka:33" + "HhvEt2OaPqQ2BZOHeWv719XlN";
+
+                var auth = new AuthenticationClient();
+                await auth.UsernamePasswordAsync(clientId, clientSecret, username, password, instanceUrl);
+                Console.WriteLine("Autenticación exitosa. Token de acceso: " + auth.AccessInfo.AccessToken);
+
+
+                // Crear una instancia del cliente de Salesforce para interactuar con la API
+                var client = new ForceClient(auth.AccessInfo.InstanceUrl, auth.ApiVersion, auth.AccessInfo.AccessToken);
+
+                // Crear el objeto de cuenta para Salesforce
+                var account = new
+                {
+                    Name = userDetails._Name,
+                    Email__c = userDetails.Email
+                };
+
+
+
+                try
+                {
+                    var createResponse = await client.CreateRecord("Account", account);
+                    Console.WriteLine($"Cuenta creada con éxito. ID: {createResponse.Id}");
+                }
+                catch (ForceApiException ex) when (ex.Errors?.Any(e => e.ErrorCode == "DUPLICATE_VALUE") == true)
+                {
+                    Console.WriteLine($"Error: Ya existe una cuenta con el correo electrónico proporcionado.");
+                }
+                return RedirectToAction("Profile","Home");
+            }
+            catch (Exception ex)
+            {
+                // Si ocurre un error durante la creación de la cuenta
+                Console.WriteLine($"Error en el servidor: {ex.Message}");
+                return StatusCode(500, $"Error interno: {ex.Message}");
+            }
+        }
+
     }
 }

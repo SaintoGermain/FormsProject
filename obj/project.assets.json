@@ -272,6 +272,20 @@
           }
         }
       },
+      "DeveloperForce.Force/2.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "11.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Salesforce.Common.dll": {},
+          "lib/netstandard2.0/Salesforce.Force.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Salesforce.Common.dll": {},
+          "lib/netstandard2.0/Salesforce.Force.dll": {}
+        }
+      },
       "Humanizer.Core/2.14.1": {
         "type": "package",
         "compile": {
@@ -1218,6 +1232,23 @@
           "buildTransitive/Mono.TextTemplating.targets": {}
         }
       },
+      "NetCoreForce.Client/4.1.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.2",
+          "System.Text.Encodings.Web": "5.0.1"
+        },
+        "compile": {
+          "lib/net8.0/NetCoreForce.Client.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/NetCoreForce.Client.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Newtonsoft.Json/13.0.3": {
         "type": "package",
         "compile": {
@@ -1993,6 +2024,25 @@
         "contentFiles/any/any/wwwroot/js/bootstrap.js.map",
         "contentFiles/any/any/wwwroot/js/bootstrap.min.js",
         "contentFiles/any/any/wwwroot/js/bootstrap.min.js.map"
+      ]
+    },
+    "DeveloperForce.Force/2.1.0": {
+      "sha512": "BXpLtAv9FHEtpfNfFINFTjM66jltyqBoX/O/8gBF3TmsxuXZkrXkEn45xoW6rDMTj4KI+bHO9cxo1o0FU2nO6g==",
+      "type": "package",
+      "path": "developerforce.force/2.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "developerforce.force.2.1.0.nupkg.sha512",
+        "developerforce.force.nuspec",
+        "lib/net452/Salesforce.Common.dll",
+        "lib/net452/Salesforce.Force.dll",
+        "lib/net462/Salesforce.Common.dll",
+        "lib/net462/Salesforce.Force.dll",
+        "lib/net472/Salesforce.Common.dll",
+        "lib/net472/Salesforce.Force.dll",
+        "lib/netstandard2.0/Salesforce.Common.dll",
+        "lib/netstandard2.0/Salesforce.Force.dll"
       ]
     },
     "Humanizer.Core/2.14.1": {
@@ -3951,6 +4001,27 @@
         "readme.md"
       ]
     },
+    "NetCoreForce.Client/4.1.0": {
+      "sha512": "jDG47Hnms/oJzfVkZIAYtoJBJRcUsO93Mr0prwVTzMihHMUb9NrlR8d7qMCAry4s+PfnDEiUyb44fyMgrKuqVQ==",
+      "type": "package",
+      "path": "netcoreforce.client/4.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net6.0/NetCoreForce.Client.dll",
+        "lib/net6.0/NetCoreForce.Client.xml",
+        "lib/net7.0/NetCoreForce.Client.dll",
+        "lib/net7.0/NetCoreForce.Client.xml",
+        "lib/net8.0/NetCoreForce.Client.dll",
+        "lib/net8.0/NetCoreForce.Client.xml",
+        "lib/netstandard2.0/NetCoreForce.Client.dll",
+        "lib/netstandard2.0/NetCoreForce.Client.xml",
+        "lib/netstandard2.1/NetCoreForce.Client.dll",
+        "lib/netstandard2.1/NetCoreForce.Client.xml",
+        "netcoreforce.client.4.1.0.nupkg.sha512",
+        "netcoreforce.client.nuspec"
+      ]
+    },
     "Newtonsoft.Json/13.0.3": {
       "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
       "type": "package",
@@ -5183,31 +5254,33 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "DeveloperForce.Force >= 2.1.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.0",
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.21.0",
+      "NetCoreForce.Client >= 4.1.0",
       "Newtonsoft.Json >= 13.0.3",
       "bootstrap >= 5.3.3"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\cmlcr\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\NoireSka\\.nuget\\packages\\": {},
+    "G:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\cmlcr\\OneDrive\\Escritorio\\iTransition Project\\iTraForms\\FormsProyect.csproj",
+      "projectUniqueName": "G:\\Desktop2\\iTransition\\iTransitionProject\\FormsProyect.csproj",
       "projectName": "FormsProyect",
-      "projectPath": "C:\\Users\\cmlcr\\OneDrive\\Escritorio\\iTransition Project\\iTraForms\\FormsProyect.csproj",
-      "packagesPath": "C:\\Users\\cmlcr\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\cmlcr\\OneDrive\\Escritorio\\iTransition Project\\iTraForms\\obj\\",
+      "projectPath": "G:\\Desktop2\\iTransition\\iTransitionProject\\FormsProyect.csproj",
+      "packagesPath": "C:\\Users\\NoireSka\\.nuget\\packages\\",
+      "outputPath": "G:\\Desktop2\\iTransition\\iTransitionProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "G:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\cmlcr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\NoireSka\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -5240,6 +5313,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "DeveloperForce.Force": {
+            "target": "Package",
+            "version": "[2.1.0, )"
+          },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
             "version": "[9.0.0, )"
@@ -5253,6 +5330,10 @@
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
             "target": "Package",
             "version": "[1.21.0, )"
+          },
+          "NetCoreForce.Client": {
+            "target": "Package",
+            "version": "[4.1.0, )"
           },
           "Newtonsoft.Json": {
             "target": "Package",

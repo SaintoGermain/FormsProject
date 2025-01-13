@@ -532,3 +532,6 @@ G:\Desktop2\iTransition\iTransitionProject\obj\Debug\net8.0\refint\FormsProyect.
 G:\Desktop2\iTransition\iTransitionProject\obj\Debug\net8.0\FormsProyect.pdb
 G:\Desktop2\iTransition\iTransitionProject\obj\Debug\net8.0\FormsProyect.genruntimeconfig.cache
 G:\Desktop2\iTransition\iTransitionProject\obj\Debug\net8.0\ref\FormsProyect.dll
+G:\Desktop2\iTransition\iTransitionProject\bin\Debug\net8.0\NetCoreForce.Client.dll
+G:\Desktop2\iTransition\iTransitionProject\bin\Debug\net8.0\Salesforce.Common.dll
+G:\Desktop2\iTransition\iTransitionProject\bin\Debug\net8.0\Salesforce.Force.dll
