@@ -9,7 +9,7 @@ namespace FormsProyect.Controllers
     public class TicketController : Controller
     {
         private readonly string jiraUrl = "https://itraforms.atlassian.net";
-        private readonly string apiToken = "";
+        private readonly string apiToken = "ATATT3xFfGF0xNDSUWB5tjmPzyD3TQfoC3mb_o6Q8p4m1VH2fnRktvWfSv339aRdiFRmwRkYHkUyd8tZKrG_SE0FlRFmZCxW45FgRFqhCgN0AO-Viwq5h-v9Z1x-KUrK6TVBOwSnMnadU2-Z73qZgsSrHP5EV4WBdGRm6aGgyvSqXFP6nSOoo1Q=F3944709";
         private readonly string email = "noiremagg@hotmail.com";
 
         [HttpPost]
