@@ -536,3 +536,7 @@ G:\Desktop2\iTransition\iTransitionProject\bin\Debug\net8.0\NetCoreForce.Client.
 G:\Desktop2\iTransition\iTransitionProject\bin\Debug\net8.0\Salesforce.Common.dll
 G:\Desktop2\iTransition\iTransitionProject\bin\Debug\net8.0\Salesforce.Force.dll
 G:\Desktop2\iTransition\iTransitionProject\bin\Debug\net8.0\RestSharp.dll
+C:\Users\cmlcr\OneDrive\Escritorio\iTransition Project\iTraForms\bin\Debug\net8.0\Salesforce.Common.dll
+C:\Users\cmlcr\OneDrive\Escritorio\iTransition Project\iTraForms\bin\Debug\net8.0\Salesforce.Force.dll
+C:\Users\cmlcr\OneDrive\Escritorio\iTransition Project\iTraForms\bin\Debug\net8.0\NetCoreForce.Client.dll
+C:\Users\cmlcr\OneDrive\Escritorio\iTransition Project\iTraForms\bin\Debug\net8.0\RestSharp.dll

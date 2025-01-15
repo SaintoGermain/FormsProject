@@ -122,6 +122,75 @@
             .catch((error) => console.error("Error:", error));
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ticketModal = document.getElementById('ticketModal');
+            const linkInput = document.getElementById('link');
+
+            ticketModal.addEventListener('show.bs.modal', () => {
+                linkInput.value = window.location.href;
+            });
+
+            document.getElementById('submitTicket').addEventListener('click', async () => {
+                try {
+                    const summary = document.getElementById('summary').value;
+                    const priority = document.getElementById('priority').value;
+                    const link = linkInput.value;
+
+                    const ticketData = { summary, priority, link };
+
+                    const response = await fetch('/Ticket/CreateTicket', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(ticketData),
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Error al crear el ticket: ${response.statusText}`);
+                    }
+
+                    const result = await response.json();
+                    alert(`Ticket creado exitosamente: ${result.ticketUrl}`);
+                } catch (error) {
+                    console.error(error);
+                    alert(`Ocurrió un error: ${error.message}`);
+                }
+            });
+        });
+    </script>
+    <script>
+                async function getFormTitle(formId) {
+            try {
+                const response = await fetch(`/Ticket/GetFormTitle/${formId}`);
+
+                if (!response.ok) throw new Error(`Error al obtener el título del formulario: ${response.statusText}`);
+
+                const data = await response.json();
+                console.log("Título del formulario:", data.Title);
+
+                return data.Title;
+            } catch (error) {
+                console.error("Error:", error);
+                return null;
+            }
+        }
+
+        // Lógica completa
+        (async () => {
+            const path = window.location.pathname;
+            const segments = path.split('/');
+            const formId = segments[segments.length - 1];
+
+            if (formId) {
+                const formTitle = await getFormTitle(formId);
+                console.log("Título recuperado:", formTitle);
+
+                // Usa el título en el ticket
+                document.getElementById("templateTitle").value = formTitle || "No disponible";
+            }
+        })();
+
+    </script>
     @await RenderSectionAsync("Script", required: false)
 </body>
 </html>
