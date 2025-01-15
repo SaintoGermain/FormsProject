@@ -66,24 +66,21 @@
         document.addEventListener('DOMContentLoaded', function () {
             const input = document.querySelector('#AllowedUsers');
 
-            // Obtener el valor del input de búsqueda (query)
             input.addEventListener('input', function () {
-                const query = input.value;  // Obtener el valor actual del input
+                const query = input.value;
 
-                // Llamada a la API para obtener los usuarios
                 fetch(`/Forms/SearchUsers?query=${encodeURIComponent(query)}`)
-                    .then(response => response.json())  // Convierte la respuesta en JSON
+                    .then(response => response.json())
                     .then(data => {
                         console.log('Usuarios recibidos:', data);
                         if (input.tagify) {
                             input.tagify.destroy();
                         }
-                        // Inicializa Tagify con los usuarios obtenidos
                         const tagify = new Tagify(input, {
                             delimiters: " ",
                             enforceWhitelist: true,
                             whitelist: data.map(user => ({
-                                value: `${user.Name} (${user.Email})`,  // Formato: Nombre (Email)
+                                value: `${user.Name} (${user.Email})`,
                                 name: user.Name,
                                 email: user.Email
                             })),
@@ -93,13 +90,12 @@
                             },
                         });
 
-                        // Manejo de selección de usuarios
                         tagify.on('add', function (e) {
                             const selected = e.detail.data;
                             console.log(`Usuario seleccionado: ${selected.value}`);
                         });
                     })
-                    .catch(error => console.error('Error fetching users:', error)); // Manejo de errores
+                    .catch(error => console.error('Error fetching users:', error));
             });
         });
     </script> *@
@@ -109,13 +105,11 @@
             const allowedUsersGroup = document.getElementById("allowed-users-group");
 
             if (isPublic) {
-                allowedUsersGroup.style.display = "none"; // Oculta el campo
+                allowedUsersGroup.style.display = "none";
             } else {
-                allowedUsersGroup.style.display = "block"; // Muestra el campo
+                allowedUsersGroup.style.display = "block";
             }
         }
-
-        // Inicializar visibilidad al cargar la página
         document.addEventListener("DOMContentLoaded", toggleAllowedUsers);
     </script>
     <button class="row-cols-5" type="submit">Next</button>

@@ -296,19 +296,13 @@ namespace FormsProyect.Controllers
                 await auth.UsernamePasswordAsync(clientId, clientSecret, username, password, instanceUrl);
                 Console.WriteLine("Autenticación exitosa. Token de acceso: " + auth.AccessInfo.AccessToken);
 
-
-                // Crear una instancia del cliente de Salesforce para interactuar con la API
                 var client = new ForceClient(auth.AccessInfo.InstanceUrl, auth.ApiVersion, auth.AccessInfo.AccessToken);
 
-                // Crear el objeto de cuenta para Salesforce
                 var account = new
                 {
                     Name = userDetails._Name,
                     Email__c = userDetails.Email
                 };
-
-
-
                 try
                 {
                     var createResponse = await client.CreateRecord("Account", account);
@@ -322,7 +316,6 @@ namespace FormsProyect.Controllers
             }
             catch (Exception ex)
             {
-                // Si ocurre un error durante la creación de la cuenta
                 Console.WriteLine($"Error en el servidor: {ex.Message}");
                 return StatusCode(500, $"Error interno: {ex.Message}");
             }

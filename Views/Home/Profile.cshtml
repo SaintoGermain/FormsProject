@@ -17,7 +17,6 @@
                 <thead>
                     <tr>
                         <th class="text-center">My Forms</th>
-                        
                     </tr>                    
                 </thead>
                 <tbody>
@@ -69,39 +68,36 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ¿Estás seguro de que deseas crear una cuenta en Salesforce con tus datos actuales?
+                Are you sure you want to make a Salesforce account?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="createSalesforceAccount">Crear Cuenta</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="createSalesforceAccount">Create Account</button>
             </div>
         </div>
     </div>
 </div>
-
 <script>
             document.getElementById("createSalesforceAccount").addEventListener("click", async () => {
         try {
-            // Lógica para obtener datos del usuario
             const response = await fetch('/Home/GetCurrentUser');
-            if (!response.ok) throw new Error(`Error al obtener los datos del usuario: ${response.statusText}`);
+            if (!response.ok) throw new Error(`Error getting user data: ${response.statusText}`);
 
             const userDetails = await response.json();
-            console.log("Datos obtenidos del usuario:", userDetails);
+            console.log("User data obtained:", userDetails);
 
-            // Enviar los datos al servidor para crear la cuenta en Salesforce
             const createResponse = await fetch('/Home/CreateSalesforceAccount', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(userDetails),
             });
 
-            if (!createResponse.ok) throw new Error(`Error al crear la cuenta en Salesforce: ${createResponse.statusText}`);
+            if (!createResponse.ok) throw new Error(`Error creating Salesforce account: ${createResponse.statusText}`);
 
 
         } catch (error) {
-            console.error("Error durante el proceso:", error);
-            alert(`Ocurrió un error: ${error.message}`);
+            console.error("Error during the process:", error);
+            alert(`An error happened: ${error.message}`);
         }
     });
 
