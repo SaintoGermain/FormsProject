@@ -12,6 +12,8 @@ G:\Desktop2\iTransition\iTransitionProject\obj\Release\net8.0\PubTmp\Out\FormsPr
 G:\Desktop2\iTransition\iTransitionProject\obj\Release\net8.0\PubTmp\Out\FormsProyect.pdb
 G:\Desktop2\iTransition\iTransitionProject\obj\Release\net8.0\PubTmp\Out\Azure.Core.dll
 G:\Desktop2\iTransition\iTransitionProject\obj\Release\net8.0\PubTmp\Out\Azure.Identity.dll
+G:\Desktop2\iTransition\iTransitionProject\obj\Release\net8.0\PubTmp\Out\Salesforce.Common.dll
+G:\Desktop2\iTransition\iTransitionProject\obj\Release\net8.0\PubTmp\Out\Salesforce.Force.dll
 G:\Desktop2\iTransition\iTransitionProject\obj\Release\net8.0\PubTmp\Out\Microsoft.Bcl.AsyncInterfaces.dll
 G:\Desktop2\iTransition\iTransitionProject\obj\Release\net8.0\PubTmp\Out\Microsoft.Data.SqlClient.dll
 G:\Desktop2\iTransition\iTransitionProject\obj\Release\net8.0\PubTmp\Out\Microsoft.EntityFrameworkCore.dll
@@ -37,7 +39,9 @@ G:\Desktop2\iTransition\iTransitionProject\obj\Release\net8.0\PubTmp\Out\Microso
 G:\Desktop2\iTransition\iTransitionProject\obj\Release\net8.0\PubTmp\Out\Microsoft.IdentityModel.Tokens.dll
 G:\Desktop2\iTransition\iTransitionProject\obj\Release\net8.0\PubTmp\Out\Microsoft.SqlServer.Server.dll
 G:\Desktop2\iTransition\iTransitionProject\obj\Release\net8.0\PubTmp\Out\Microsoft.Win32.SystemEvents.dll
+G:\Desktop2\iTransition\iTransitionProject\obj\Release\net8.0\PubTmp\Out\NetCoreForce.Client.dll
 G:\Desktop2\iTransition\iTransitionProject\obj\Release\net8.0\PubTmp\Out\Newtonsoft.Json.dll
+G:\Desktop2\iTransition\iTransitionProject\obj\Release\net8.0\PubTmp\Out\RestSharp.dll
 G:\Desktop2\iTransition\iTransitionProject\obj\Release\net8.0\PubTmp\Out\System.ClientModel.dll
 G:\Desktop2\iTransition\iTransitionProject\obj\Release\net8.0\PubTmp\Out\System.Configuration.ConfigurationManager.dll
 G:\Desktop2\iTransition\iTransitionProject\obj\Release\net8.0\PubTmp\Out\System.Diagnostics.DiagnosticSource.dll

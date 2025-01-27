@@ -5,7 +5,7 @@ namespace FormsProyect.ViewModels
     public class FormViewModel
     {
         public int NoForm { get; set; }
-        public string _Name { get; set; }
+        public string? _Name { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public int SelectedTopicId { get; set; }
@@ -52,5 +52,14 @@ namespace FormsProyect.ViewModels
     {
         public List<int> UsersIDS { get; set; }
         public List<Forms> Forms { get; set; }
+    }
+    public class TicketRequestModel
+    {
+        public string Summary { get; set; }
+        public string Priority { get; set; }
+        public string Link { get; set; }
+        public string CurrentUser { get; set; }
+        public string CurrentStatus { get; set; }
+        public string CurrentTemplate { get; set; }
     }
 }

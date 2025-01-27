@@ -1,0 +1,39 @@
+﻿@model IEnumerable<dynamic>
+@using Newtonsoft.Json
+@{
+    ViewData["Title"] = "My Tickets";
+}
+<h2>My Tickets</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Number</th>
+            <th>Summary</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var ticket in Model)
+            {
+                        <tr>
+                            <td>@ticket.Key</td>
+                            <td>@ticket.Summary</td>
+                            <td>@ticket.Status</td>
+                            <td>
+                                <a class="btn btn-primary btn-sm" href="@($"https://itraforms.atlassian.net/browse/{ticket.Key}")" target="_blank">View</a>
+                            </td>
+                        </tr>
+            }
+        }
+        else
+        {
+                <tr>
+                    <td colspan="4" class="text-center">No tickets found.</td>
+                </tr>
+        }
+    </tbody>
+</table>

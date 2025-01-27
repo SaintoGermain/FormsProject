@@ -354,3 +354,7 @@ G:\Desktop2\iTransition\iTransitionProject\obj\Release\net8.0\refint\FormsProyec
 G:\Desktop2\iTransition\iTransitionProject\obj\Release\net8.0\FormsProyect.pdb
 G:\Desktop2\iTransition\iTransitionProject\obj\Release\net8.0\FormsProyect.genruntimeconfig.cache
 G:\Desktop2\iTransition\iTransitionProject\obj\Release\net8.0\ref\FormsProyect.dll
+G:\Desktop2\iTransition\iTransitionProject\bin\Release\net8.0\Salesforce.Common.dll
+G:\Desktop2\iTransition\iTransitionProject\bin\Release\net8.0\Salesforce.Force.dll
+G:\Desktop2\iTransition\iTransitionProject\bin\Release\net8.0\NetCoreForce.Client.dll
+G:\Desktop2\iTransition\iTransitionProject\bin\Release\net8.0\RestSharp.dll

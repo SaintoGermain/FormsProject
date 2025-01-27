@@ -7,9 +7,11 @@
 
 <h2>My Profile</h2>
 <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#salesforceModal">
-    Crear cuenta en Salesforce
+    Create account in Salesforce
 </button>
-
+<a class="btn btn-secondary mb-2" href="/Ticket/UserTickets" role="button">
+    My Tickets
+</a>
 <div class="container">
     <div class="row">
         <div class="col">
@@ -64,7 +66,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="salesforceModalLabel">Crear cuenta en Salesforce</h5>
+                <h5 class="modal-title" id="salesforceModalLabel">Create account in Salesforce</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -77,6 +79,7 @@
         </div>
     </div>
 </div>
+
 <script>
             document.getElementById("createSalesforceAccount").addEventListener("click", async () => {
         try {
@@ -92,14 +95,16 @@
                 body: JSON.stringify(userDetails),
             });
 
-            if (!createResponse.ok) throw new Error(`Error creating Salesforce account: ${createResponse.statusText}`);
-
+            if (createResponse.ok) {
+            const result = await createResponse.json();
+            alert(result.message);
+            } else {
+                throw new Error(`This email is already registered`);
+            }
 
         } catch (error) {
             console.error("Error during the process:", error);
             alert(`An error happened: ${error.message}`);
         }
     });
-
-
 </script>

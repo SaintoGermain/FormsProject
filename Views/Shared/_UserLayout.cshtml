@@ -14,14 +14,60 @@
             <div class="sidebar-heading text-white">iTra Forms </div>
             <div class="list-group list-group-flush">
                 <a class="list-group-item list-group-item-action bg-dark text-white" asp-area="" asp-controller="Home" asp-action="Page">Home</a>
+                <a class="list-group-item list-group-item-action bg-dark text-white" asp-area="" asp-controller="Home" asp-action="Profile">My Profile</a>
                 <a class="list-group-item list-group-item-action bg-dark text-white" asp-area="" asp-controller="Forms" asp-action="Forms">Create Template</a>
                 <a class="list-group-item list-group-item-action bg-dark text-white" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
             </div>
+            <button type="button" class="btn btn-primary position-absolute bottom-0 mb-3" data-bs-toggle="modal" data-bs-target="#ticketModal">
+                Create Support Ticket
+            </button>
         </div>
         <div id="page-content-wrapper">
             <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 <button class="btn btn-primary ms-2" id="menu-toggle">☰</button>
 
+                <div class="modal fade" id="ticketModal" tabindex="-1" aria-labelledby="ticketModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="ticketModalLabel">Create Support Ticket</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="ticketForm">
+                                    <div class="mb-3">
+                                        <label for="summary" class="form-label">Summary:</label>
+                                        <input type="text" class="form-control" id="summary" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="priority" class="form-label">Priority:</label>
+                                        <select class="form-select" id="priority" required>
+                                            <option value="High">High</option>
+                                            <option value="Medium">Medium</option>
+                                            <option value="Low">Low</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="link" class="form-label"></label>
+                                        <input type="hidden" class="form-control" id="link" value="CURRENT_PAGE_LINK" readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="link" class="form-label"></label>
+                                        <input type="hidden" class="form-control" id="currentUser" value="" readonly>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="templateTitle" class="form-label"></label>
+                                        <input type="hidden" class="form-control" id="templateTitle" value="No Title" readonly>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-primary" id="submitTicket">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <span class="navbar-brand ms-2"></span>
                 <form class="d-flex ms-auto" method="get" action="/Search">
                     <input class="form-control me-2" type="search" placeholder="Search Template..." aria-label="Search" name="query">
@@ -43,6 +89,90 @@
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        const ticketModal = document.getElementById('ticketModal');
+        const linkInput = document.getElementById('link');
+        const templateTitleInput = document.getElementById('templateTitle');
+        const userName = document.getElementById('currentUser');
+
+        ticketModal.addEventListener('show.bs.modal', async () => {
+            linkInput.value = window.location.href;
+
+            const path = window.location.pathname;
+            const segments = path.split('/');
+            const formId = segments[segments.length - 1];
+            const formPath = segments[segments.length - 2];
+
+            if(formPath == "EditForm"){
+                if (formId) {
+                try {
+                    const response = await fetch(`/Ticket/GetFormTitle/${formId}`);
+
+                    if (!response.ok) {
+                        throw new Error(`The title is not available: ${response.statusText}`);
+                    }
+
+                    const data = await response.json();
+                    templateTitleInput.value = data.title || "Title Missing";
+                } catch (error) {
+                    console.error("There was an error getting the title:", error);
+                    templateTitleInput.value = "There was an error getting the title";
+                }
+            } else {
+                templateTitleInput.value = "No title";
+            }
+            }
+
+            try {
+                const response = await fetch(`/Ticket/GetUser`);
+
+                if (!response.ok) {
+                    throw new Error(`The user doesn't exist': ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                userName.value = data.user || "User missing";
+            } catch (error) {
+                console.error("There was an error getting the user name:", error);
+                userName.value = "There was an error getting the user name";
+            }
+            });
+        });
+    </script>
+    <script>
+         document.getElementById("submitTicket").addEventListener("click", async () => {
+            const summary = document.getElementById("summary").value;
+            const priority = document.getElementById("priority").value;
+            const link = document.getElementById("link").value;
+            const currentUser = document.getElementById("currentUser").value;
+            const currentTemplate = document.getElementById("templateTitle").value;
+            try {
+                const response = await fetch("/Ticket/CreateTicket", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        summary,
+                        priority,
+                        link,
+                        currentUser,
+                        currentTemplate
+                    }),
+                });
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`Error creating the ticket: ${errorText}`);
+                }
+                const result = await response.json();
+                alert(`Ticket was created succesfully: ${result.link}`);
+                window.open(result.link, "_blank");
+            } catch (error) {
+                console.error("Error:", error);
+                alert(`Something happened: ${error.message}`);
+            }
+        });
+
     </script>
     @await RenderSectionAsync("Script", required: false)
 </body>

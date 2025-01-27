@@ -303,21 +303,21 @@ namespace FormsProyect.Controllers
                     Name = userDetails._Name,
                     Email__c = userDetails.Email
                 };
-                try
+
+                var createResponse = await client.CreateRecord("Account", account);
+
+                if (createResponse != null)
                 {
-                    var createResponse = await client.CreateRecord("Account", account);
-                    Console.WriteLine($"Cuenta creada con éxito. ID: {createResponse.Id}");
+                    return Ok(new { message = "Account created successfully!" });
                 }
-                catch (ForceApiException ex) when (ex.Errors?.Any(e => e.ErrorCode == "DUPLICATE_VALUE") == true)
+                else
                 {
-                    Console.WriteLine($"Error: Ya existe una cuenta con el correo electrónico proporcionado.");
+                    return Ok(new { message = "An account with this email already exists." });
                 }
-                return RedirectToAction("Profile","Home");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error en el servidor: {ex.Message}");
-                return StatusCode(500, $"Error interno: {ex.Message}");
+                return StatusCode(500, new { message = "Error during account creation: " + ex.Message });
             }
         }
 
