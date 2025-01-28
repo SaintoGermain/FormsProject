@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "G:\\Desktop2\\iTransition\\iTransitionProject\\FormsProyect.csproj": {}
+    "C:\\Users\\cmlcr\\OneDrive\\Escritorio\\iTransition Project\\iTraForms\\FormsProyect.csproj": {}
   },
   "projects": {
-    "G:\\Desktop2\\iTransition\\iTransitionProject\\FormsProyect.csproj": {
+    "C:\\Users\\cmlcr\\OneDrive\\Escritorio\\iTransition Project\\iTraForms\\FormsProyect.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Desktop2\\iTransition\\iTransitionProject\\FormsProyect.csproj",
+        "projectUniqueName": "C:\\Users\\cmlcr\\OneDrive\\Escritorio\\iTransition Project\\iTraForms\\FormsProyect.csproj",
         "projectName": "FormsProyect",
-        "projectPath": "G:\\Desktop2\\iTransition\\iTransitionProject\\FormsProyect.csproj",
-        "packagesPath": "C:\\Users\\NoireSka\\.nuget\\packages\\",
-        "outputPath": "G:\\Desktop2\\iTransition\\iTransitionProject\\obj\\",
+        "projectPath": "C:\\Users\\cmlcr\\OneDrive\\Escritorio\\iTransition Project\\iTraForms\\FormsProyect.csproj",
+        "packagesPath": "C:\\Users\\cmlcr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\cmlcr\\OneDrive\\Escritorio\\iTransition Project\\iTraForms\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "G:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\NoireSka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\cmlcr\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
