@@ -4,11 +4,12 @@
 }
 @model List<FormsProyect.Models.Entities.Users>;
 
+<link rel="stylesheet" href="~/css/Users.css" />
 <div class="row">
     <div class="col-sm-8 offset-sm-2">
         <h2>Users</h2>
 
-        <table class="table table-bordered">
+        <table class="tableUsers">
             <thead>
                 <tr>
                     <th>User ID</th>
@@ -27,7 +28,7 @@
                         <td>@item.Email</td>
                         <td>@(item.Active ? "Unblocked" : "Blocked")</td>
                         <td>@(item.Admin ? "Admin" : "User")</td>
-                        <td>
+                        <td class="table-buttons">
                             <a asp-controller= "Users" asp-action="Delete" asp-route-id="@item.UserId" onclick="return Confirm()" class="btn btn-danger">
                                 Delete User
                             </a>

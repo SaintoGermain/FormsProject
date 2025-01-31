@@ -1,0 +1,34 @@
+﻿.tableUsers {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-collapse: collapse;
+    font-size: 18px;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #5b5b5b;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 1);
+    margin-top:20px;
+}
+
+
+.tableUsers th, .tableUsers td {
+    padding: 12px 15px;
+    color: #eaeaea;
+}
+
+.tableUsers th {
+    background-color: #2a2727;
+    color: #eaeaea;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tableUsers tbody tr.division td {
+    background-color: #6c7ae0;
+    border: none;
+    padding: 0;
+}
+
+.table-buttons a {
+    font-size: 13px;
+}

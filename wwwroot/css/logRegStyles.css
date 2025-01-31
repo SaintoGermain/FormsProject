@@ -1,8 +1,8 @@
 ﻿
 body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-color: #e4dbc2;
-    display:flex;
+    background-color: #EFF3EA;
+    display: flex;
     flex-direction: row;
     align-items: flex-start;
 }
@@ -15,7 +15,7 @@ body {
 }
 
 .card-header {
-    background-color: #2973B2;
+    background-color: #2a2727;
     color: white;
     text-align: center;
     font-weight: bold;
@@ -31,7 +31,7 @@ body {
 }
 
 .btn-primary {
-    background-color: #2973B2;
+    background-color: #2a2727;
     border: none;
     border-radius: 10px;
     font-size: 1rem;
@@ -39,7 +39,7 @@ body {
 }
 
     .btn-primary:hover {
-        background-color: #0056b3;
+        background-color: #5b5b5b;
         transform: scale(1.05);
     }
 
@@ -59,19 +59,36 @@ a {
         text-decoration: underline;
     }
 
-.imgColosseum {
-    width: 57%;
+.images {
+    width: 60%;
     height: 100%;
     display: flex;
     flex-direction: column;
     border-start-end-radius: 10px;
     border-end-end-radius: 10px;
+    animation: slideShow 14s infinite;
+}
+@keyframes slideShow {
+    0%, 25% {
+        background-image: url("../images/colosseum.jpg");
+    }
+
+    26%, 50% {
+        background-image: url("../images/cells.jpg");
+    }
+
+    51%, 75% {
+        background-image: url("../images/binary.jpg");
+    }
+    76%, 100% {
+        background-image: url("../images/orchestra.jpg");
+    }
 }
 
 
 .titleWelcome {
     font-size: 20px;
-    color: #007bff;
+    color: #2a2727;
 }
 
 .subWelcome {
@@ -96,6 +113,38 @@ a {
 }
 
 .rightSide{
-    margin-top:20px;
-    margin-left:105px;
+    margin-top:40%;
+    margin-left:50%;
+}
+
+.slideshow {
+    width: 80%;
+    max-width: 600px;
+    height: auto;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    animation: slideShow 9s infinite;
+}
+
+@media screen and (max-width: 1480px) {
+    .welcome {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 25%;
+    }
+
+    .welcomeText {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    body {
+        flex-direction: column;
+    }
+
+    .images{
+        width:100vw;
+        height:20%;
+    }
 }

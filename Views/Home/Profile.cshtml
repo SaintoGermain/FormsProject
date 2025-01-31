@@ -4,6 +4,7 @@
     ViewData["Title"] = "Form Making";
 }
 @model ProfileViewModel
+<link rel="stylesheet" href="~/css/Users.css" />
 
 <h2>My Profile</h2>
 <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#salesforceModal">
@@ -15,7 +16,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <table class="table table-bordered border-black">
+            <table class="tableUsers">
                 <thead>
                     <tr>
                         <th class="text-center">My Forms</th>
@@ -28,8 +29,8 @@
                             @foreach (var form in Model.Forms)
                             {
                             <div>
-                                <h4>@form.Title</h4>
-                                <p>@form.Descr</p>
+                                <h4>Title: @form.Title</h4>
+                                <p>Description: @form.Descr</p>
                                 <div class="d-flex justify-content-around">
                                     <a asp-controller="Home" asp-action="EditForm" asp-route-id="@form.NoForm" class="btn btn-primary">
                                         Edit Form
@@ -52,7 +53,7 @@
             </table>
         </div>
         <div class="col">
-            <table class="table table-bordered ">
+            <table class="tableUsers ">
                 <thead>
                     <tr>
                         <th class="text-center">My Filled Forms</th>
