@@ -197,6 +197,10 @@
       "PackagePath": "staticwebassets\\css\\tagify.css"
     },
     {
+      "Id": "G:\\Desktop2\\iTransition\\iTransitionProject\\wwwroot\\css\\universal.css",
+      "PackagePath": "staticwebassets\\css\\universal.css"
+    },
+    {
       "Id": "G:\\Desktop2\\iTransition\\iTransitionProject\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },

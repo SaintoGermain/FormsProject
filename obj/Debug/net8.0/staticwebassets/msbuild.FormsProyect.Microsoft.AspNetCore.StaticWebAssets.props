@@ -588,8 +588,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>b0esstt1bi</Fingerprint>
-      <Integrity>63W81CedxThMHqVk93mfnB668blGuyVFonIv7gj6Mrk=</Integrity>
+      <Fingerprint>3658jz6f7z</Fingerprint>
+      <Integrity>K0vEWRw62WUeaYLp6RsRvOjznfX/Wa8EU0TTjz1Y7rI=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\logRegStyles.css'))</OriginalItemSpec>
@@ -648,6 +648,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\tagify.css'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\universal.css'))">
+      <SourceType>Package</SourceType>
+      <SourceId>FormsProyect</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/FormsProyect</BasePath>
+      <RelativePath>css/universal.css</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>xtgtto1687</Fingerprint>
+      <Integrity>i9hLLlYeGguzYoB8Sp9lVlGVV0aPjbzAqQ+nJ8tqk3s=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\universal.css'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Users.css'))">
       <SourceType>Package</SourceType>
       <SourceId>FormsProyect</SourceId>
@@ -660,8 +678,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>jkbq52mmlb</Fingerprint>
-      <Integrity>EwrOrGdDjyRPtXEiM3wexwztToyUn9Wy2430pP4JXRI=</Integrity>
+      <Fingerprint>f0xiujne9p</Fingerprint>
+      <Integrity>n3E3q0DCOdYRkvmAAPhwTsMrKEMNLlWrt+9WStluQLg=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Users.css'))</OriginalItemSpec>

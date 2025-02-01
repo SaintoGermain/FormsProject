@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "jjs9tLfx4uZeFuFQ6VV9vnSzAUC23v3XfymM+NwzKJ0=",
+  "Hash": "UKEkcK4HTGVc3rv/2fe44IqYVGDxgDJQ5D0VlbbV43s=",
   "Source": "FormsProyect",
   "BasePath": "_content/FormsProyect",
   "Mode": "Default",
@@ -955,8 +955,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "b0esstt1bi",
-      "Integrity": "63W81CedxThMHqVk93mfnB668blGuyVFonIv7gj6Mrk=",
+      "Fingerprint": "3658jz6f7z",
+      "Integrity": "K0vEWRw62WUeaYLp6RsRvOjznfX/Wa8EU0TTjz1Y7rI=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\logRegStyles.css"
@@ -1025,6 +1025,27 @@
       "OriginalItemSpec": "wwwroot\\css\\tagify.css"
     },
     {
+      "Identity": "G:\\Desktop2\\iTransition\\iTransitionProject\\wwwroot\\css\\universal.css",
+      "SourceId": "FormsProyect",
+      "SourceType": "Discovered",
+      "ContentRoot": "G:\\Desktop2\\iTransition\\iTransitionProject\\wwwroot\\",
+      "BasePath": "_content/FormsProyect",
+      "RelativePath": "css/universal#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "xtgtto1687",
+      "Integrity": "i9hLLlYeGguzYoB8Sp9lVlGVV0aPjbzAqQ+nJ8tqk3s=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\universal.css"
+    },
+    {
       "Identity": "G:\\Desktop2\\iTransition\\iTransitionProject\\wwwroot\\css\\Users.css",
       "SourceId": "FormsProyect",
       "SourceType": "Discovered",
@@ -1039,8 +1060,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "jkbq52mmlb",
-      "Integrity": "EwrOrGdDjyRPtXEiM3wexwztToyUn9Wy2430pP4JXRI=",
+      "Fingerprint": "f0xiujne9p",
+      "Integrity": "n3E3q0DCOdYRkvmAAPhwTsMrKEMNLlWrt+9WStluQLg=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\Users.css"
@@ -5079,7 +5100,7 @@
       ]
     },
     {
-      "Route": "css/logRegStyles.b0esstt1bi.css",
+      "Route": "css/logRegStyles.3658jz6f7z.css",
       "AssetFile": "G:\\Desktop2\\iTransition\\iTransitionProject\\wwwroot\\css\\logRegStyles.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -5089,7 +5110,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2699"
+          "Value": "2700"
         },
         {
           "Name": "Content-Type",
@@ -5097,11 +5118,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"63W81CedxThMHqVk93mfnB668blGuyVFonIv7gj6Mrk=\""
+          "Value": "\"K0vEWRw62WUeaYLp6RsRvOjznfX/Wa8EU0TTjz1Y7rI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 28 Jan 2025 06:16:44 GMT"
+          "Value": "Tue, 28 Jan 2025 19:06:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5111,7 +5132,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "b0esstt1bi"
+          "Value": "3658jz6f7z"
         },
         {
           "Name": "label",
@@ -5119,7 +5140,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-63W81CedxThMHqVk93mfnB668blGuyVFonIv7gj6Mrk="
+          "Value": "sha256-K0vEWRw62WUeaYLp6RsRvOjznfX/Wa8EU0TTjz1Y7rI="
         }
       ]
     },
@@ -5134,7 +5155,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2699"
+          "Value": "2700"
         },
         {
           "Name": "Content-Type",
@@ -5142,11 +5163,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"63W81CedxThMHqVk93mfnB668blGuyVFonIv7gj6Mrk=\""
+          "Value": "\"K0vEWRw62WUeaYLp6RsRvOjznfX/Wa8EU0TTjz1Y7rI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 28 Jan 2025 06:16:44 GMT"
+          "Value": "Tue, 28 Jan 2025 19:06:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5156,7 +5177,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-63W81CedxThMHqVk93mfnB668blGuyVFonIv7gj6Mrk="
+          "Value": "sha256-K0vEWRw62WUeaYLp6RsRvOjznfX/Wa8EU0TTjz1Y7rI="
         }
       ]
     },
@@ -5265,7 +5286,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 28 Jan 2025 02:10:01 GMT"
+          "Value": "Tue, 28 Jan 2025 15:56:27 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5302,7 +5323,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 28 Jan 2025 02:10:01 GMT"
+          "Value": "Tue, 28 Jan 2025 15:56:27 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5407,6 +5428,88 @@
       ]
     },
     {
+      "Route": "css/universal.css",
+      "AssetFile": "G:\\Desktop2\\iTransition\\iTransitionProject\\wwwroot\\css\\universal.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "128"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"i9hLLlYeGguzYoB8Sp9lVlGVV0aPjbzAqQ+nJ8tqk3s=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 28 Jan 2025 16:02:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-i9hLLlYeGguzYoB8Sp9lVlGVV0aPjbzAqQ+nJ8tqk3s="
+        }
+      ]
+    },
+    {
+      "Route": "css/universal.xtgtto1687.css",
+      "AssetFile": "G:\\Desktop2\\iTransition\\iTransitionProject\\wwwroot\\css\\universal.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "128"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"i9hLLlYeGguzYoB8Sp9lVlGVV0aPjbzAqQ+nJ8tqk3s=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 28 Jan 2025 16:02:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "xtgtto1687"
+        },
+        {
+          "Name": "label",
+          "Value": "css/universal.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-i9hLLlYeGguzYoB8Sp9lVlGVV0aPjbzAqQ+nJ8tqk3s="
+        }
+      ]
+    },
+    {
       "Route": "css/Users.css",
       "AssetFile": "G:\\Desktop2\\iTransition\\iTransitionProject\\wwwroot\\css\\Users.css",
       "Selectors": [],
@@ -5417,7 +5520,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "779"
+          "Value": "700"
         },
         {
           "Name": "Content-Type",
@@ -5425,11 +5528,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"EwrOrGdDjyRPtXEiM3wexwztToyUn9Wy2430pP4JXRI=\""
+          "Value": "\"n3E3q0DCOdYRkvmAAPhwTsMrKEMNLlWrt+9WStluQLg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 28 Jan 2025 03:36:44 GMT"
+          "Value": "Tue, 28 Jan 2025 18:47:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5439,12 +5542,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-EwrOrGdDjyRPtXEiM3wexwztToyUn9Wy2430pP4JXRI="
+          "Value": "sha256-n3E3q0DCOdYRkvmAAPhwTsMrKEMNLlWrt+9WStluQLg="
         }
       ]
     },
     {
-      "Route": "css/Users.jkbq52mmlb.css",
+      "Route": "css/Users.f0xiujne9p.css",
       "AssetFile": "G:\\Desktop2\\iTransition\\iTransitionProject\\wwwroot\\css\\Users.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -5454,7 +5557,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "779"
+          "Value": "700"
         },
         {
           "Name": "Content-Type",
@@ -5462,11 +5565,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"EwrOrGdDjyRPtXEiM3wexwztToyUn9Wy2430pP4JXRI=\""
+          "Value": "\"n3E3q0DCOdYRkvmAAPhwTsMrKEMNLlWrt+9WStluQLg=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 28 Jan 2025 03:36:44 GMT"
+          "Value": "Tue, 28 Jan 2025 18:47:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5476,7 +5579,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "jkbq52mmlb"
+          "Value": "f0xiujne9p"
         },
         {
           "Name": "label",
@@ -5484,7 +5587,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-EwrOrGdDjyRPtXEiM3wexwztToyUn9Wy2430pP4JXRI="
+          "Value": "sha256-n3E3q0DCOdYRkvmAAPhwTsMrKEMNLlWrt+9WStluQLg="
         }
       ]
     },
